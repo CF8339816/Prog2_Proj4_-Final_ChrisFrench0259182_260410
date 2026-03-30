@@ -56,6 +56,7 @@
     <Compile Include="HUD.cs" />
     <Compile Include="LoadMap.cs" />
     <Compile Include="MyEvents.cs" />
+    <Compile Include="OutputRec.cs" />
     <Compile Include="Peon.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PowerOrb.cs" />
@@ -63,6 +64,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CollectSpawner.cs" />
     <Compile Include="rectangle.cs" />
+    <Compile Include="RecTrigX.cs" />
+    <Compile Include="RecTrigY.cs" />
     <Compile Include="Treasure.cs" />
   </ItemGroup>
   <ItemGroup>
