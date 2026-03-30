@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class CollectSpawner
 
@@ -19,7 +19,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
         public static void SetupMapAssets()
         {           
-            if (Program.map._currentMapIndex < 3)
+            if (GameManager.map._currentMapIndex < 3)
             {
                 Treasure.DrawGold();
                 Captive.DrawPrisoner();

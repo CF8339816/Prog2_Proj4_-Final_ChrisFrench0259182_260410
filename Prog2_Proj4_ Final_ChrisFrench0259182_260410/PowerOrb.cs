@@ -7,13 +7,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class PowerOrb : Collectable
     {
         public static bool _powerOrb = true;
         public static Random _powerOrbSpawn = new Random();
-        public static (int, int) _plPosition = (Program.player._x, Program.player._y);
+        public static (int, int) _plPosition = (GameManager.player._x, GameManager.player._y);
         //  public static char orbSymbol = '\u2699'; will not diaplay . 
         public static int powerOrb_x_pos;
         public static int powerOrb_y_pos;
@@ -34,9 +34,9 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
         public static void DrawPowerOrb()
         {
-            int currentMap = Program.map._currentMapIndex;
+            int currentMap = GameManager.map._currentMapIndex;
 
-            if (!Program.MapOrbRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected treasures
+            if (!GameManager.MapOrbRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected treasures
             {
                 List<(int x, int y)> PowerOrb = new List<(int x, int y)>();
                 for (int i = 0; i < _poCount; i++)
@@ -48,7 +48,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                         poSpawnX = _powerOrbSpawn.Next(powerOrb_min_max_x.Item1, powerOrb_min_max_x.Item2 + 1);
                         poSpawnY = _powerOrbSpawn.Next(powerOrb_min_max_y.Item1, powerOrb_min_max_y.Item2 + 1);
 
-                        if (!Program.IsTileOccupied(poSpawnX, poSpawnY))
+                        if (!GameManager.IsTileOccupied(poSpawnX, poSpawnY))
                         {
                             PowerOrb.Add((poSpawnX, poSpawnY));
                             valid = true;
@@ -56,10 +56,10 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                   
                       }
                 }
-                Program.MapOrbRegistry[currentMap] = PowerOrb;
+                GameManager.MapOrbRegistry[currentMap] = PowerOrb;
             }
 
-            foreach (var pOrb in Program.MapOrbRegistry[currentMap])//Drawing  from the dictionary list for the current map
+            foreach (var pOrb in GameManager.MapOrbRegistry[currentMap])//Drawing  from the dictionary list for the current map
             {
                 Console.SetCursorPosition(pOrb.x, pOrb.y);
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -69,23 +69,23 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         }
         public static void CheckOrbCollection()
         {
-            int currentMap = Program.map._currentMapIndex;
-            if (!Program.MapOrbRegistry.ContainsKey(currentMap)) return;// checks the correct map dictionary for orb location
+            int currentMap = GameManager.map._currentMapIndex;
+            if (!GameManager.MapOrbRegistry.ContainsKey(currentMap)) return;// checks the correct map dictionary for orb location
 
-            var orbs = Program.MapOrbRegistry[currentMap];
+            var orbs = GameManager.MapOrbRegistry[currentMap];
 
             for (int i = orbs.Count - 1; i >= 0; i--)
             {
 
-                if (Program.player._x == orbs[i].x && Program.player._y == orbs[i].y)// checks for player on the Orb
+                if (GameManager.player._x == orbs[i].x && GameManager.player._y == orbs[i].y)// checks for player on the Orb
                 {
 
-                    if (Program.player._x == orbs[i].x && Program.player._y == orbs[i].y)
+                    if (GameManager.player._x == orbs[i].x && GameManager.player._y == orbs[i].y)
                     {
 
-                        if (Program.MapPeonRegistry.ContainsKey(currentMap))// finds the current peon locations on the map
+                        if (GameManager.MapPeonRegistry.ContainsKey(currentMap))// finds the current peon locations on the map
                         {
-                            var currentPeons = Program.MapPeonRegistry[currentMap];
+                            var currentPeons = GameManager.MapPeonRegistry[currentMap];
 
                           
 
@@ -97,7 +97,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 Console.Beep(800, 50);
                                 Thread.Sleep(500); //adds a dellay to make itt feel like a wave  not super fast
                                 Console.SetCursorPosition(peonPos.x, peonPos.y);
-                                Program.WriteTileWithColor(Program.map._mapsCurrent[peonPos.y][peonPos.x]);// resets the oroignal map tile
+                                GameManager.WriteTileWithColor(GameManager.map._mapsCurrent[peonPos.y][peonPos.x]);// resets the oroignal map tile
                             }
                             int peonsDestroyed = currentPeons.Count;
                             int bonusXP = peonsDestroyed * 10;

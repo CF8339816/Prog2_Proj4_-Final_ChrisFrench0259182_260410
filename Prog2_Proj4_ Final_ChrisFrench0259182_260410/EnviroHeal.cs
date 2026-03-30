@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class EnviroHeal : Adjustor
     {
@@ -23,20 +23,20 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         public static void SpringWatterHealling()
         {
 
-            if (Program.map._mapsCurrent[Program.player._y][Program.player._x] == 'w')// applies spring water healing
+            if (GameManager.map._mapsCurrent[GameManager.player._y][GameManager.player._x] == 'w')// applies spring water healing
             {
-                Program.player._health += 20;
-                if (Program.player._health > Program.plaMaxHP)
+                GameManager.player._health += 20;
+                if (GameManager.player._health > GameManager.plaMaxHP)
                 {
-                    Program.player._health = Program.plaMaxHP;
+                    GameManager.player._health = GameManager.plaMaxHP;
                 }
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.SetCursorPosition(60, 11);
-                Console.WriteLine($"{Program.player._name} Finds cool refreshing sparkling mineral");
+                Console.WriteLine($"{GameManager.player._name} Finds cool refreshing sparkling mineral");
                 Console.SetCursorPosition(60, 12);
                 Console.WriteLine($" water and is healed for 20 pts ");
                 Console.SetCursorPosition(60, 12);
-                Console.WriteLine($"{Program.player._name} now has {Program.player._health} HP");
+                Console.WriteLine($"{GameManager.player._name} now has {GameManager.player._health} HP");
             }
 
         }

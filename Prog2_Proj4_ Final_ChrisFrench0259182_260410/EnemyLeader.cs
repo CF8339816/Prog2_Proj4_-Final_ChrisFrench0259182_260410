@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class EnemyLeader : Character
     {
@@ -23,16 +23,16 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             int nextX = enmy._x;
             int nextY = enmy._y;
         
-            bool isPlayerNear = (enmy._x + 2 >= Program.player._x && enmy._x - 2 <= Program.player._x && enmy._y + 2 >= Program.player._y && enmy._y - 2 <= Program.player._y);
+            bool isPlayerNear = (enmy._x + 2 >= GameManager.player._x && enmy._x - 2 <= GameManager.player._x && enmy._y + 2 >= GameManager.player._y && enmy._y - 2 <= GameManager.player._y);
            
             if (isPlayerNear)
             {
 
-                if (enmy._x < Program.player._x) nextX++;
-                else if (enmy._x > Program.player._x) nextX--;
+                if (enmy._x < GameManager.player._x) nextX++;
+                else if (enmy._x > GameManager.player._x) nextX--;
 
-                if (enmy._y < Program.player._y) nextY++;
-                else if (enmy._y > Program.player._y) nextY--;
+                if (enmy._y < GameManager.player._y) nextY++;
+                else if (enmy._y > GameManager.player._y) nextY--;
             }
             else
             {
@@ -41,7 +41,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             }
             bool inBounds = (nextX >= 1 && nextX <= 55 && nextY >= 1 && nextY <= 24);
             bool isPathBlockedByEnemy = false;
-            foreach (EnemyLeader other in Program.enemiesMap1)
+            foreach (EnemyLeader other in GameManager.enemiesMap1)
             {
                 if (other != enmy && nextX == other._x && nextY == other._y)
                 {
@@ -49,7 +49,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                     break;
                 }
             }
-            foreach (EnemyLeader other in Program.enemiesMap2)
+            foreach (EnemyLeader other in GameManager.enemiesMap2)
             {
                 if (other != enmy && nextX == other._x && nextY == other._y)
                 {
@@ -57,7 +57,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                     break;
                 }
             }
-            foreach (EnemyLeader other in Program.enemiesMap3)
+            foreach (EnemyLeader other in GameManager.enemiesMap3)
             {
                 if (other != enmy && nextX == other._x && nextY == other._y)
                 {
@@ -66,12 +66,12 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                 }
             }
          
-                char targetTile = Program.map._mapsCurrent[nextY][nextX];
-            if (inBounds && !isPathBlockedByEnemy && !Program.IsTileOccupied(nextX, nextY) && targetTile != '*' && targetTile != '!' && targetTile != 'S' && targetTile != '$' && targetTile != '#' && targetTile != 'w' && targetTile != '%' && targetTile != '@' && (nextX != Program.player._x || nextY != Program.player._y))
+                char targetTile = GameManager.map._mapsCurrent[nextY][nextX];
+            if (inBounds && !isPathBlockedByEnemy && !GameManager.IsTileOccupied(nextX, nextY) && targetTile != '*' && targetTile != '!' && targetTile != 'S' && targetTile != '$' && targetTile != '#' && targetTile != 'w' && targetTile != '%' && targetTile != '@' && (nextX != GameManager.player._x || nextY != GameManager.player._y))
             {
                 Console.SetCursorPosition(enmy._x, enmy._y);
-                char oldTile = Program.map._mapsCurrent[enmy._y][enmy._x];
-                Program.WriteTileWithColor(oldTile);
+                char oldTile = GameManager.map._mapsCurrent[enmy._y][enmy._x];
+                GameManager.WriteTileWithColor(oldTile);
 
                 enmy._x = nextX;
                 enmy._y = nextY;
@@ -84,36 +84,36 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             }
             else
             {
-                foreach (EnemyLeader other in Program.enemiesMap1)
+                foreach (EnemyLeader other in GameManager.enemiesMap1)
                 {
                     if (other != enmy && nextX == other._x && nextY == other._y)
                     {
-                        Program.isAlly = true;
+                        GameManager.isAlly = true;
                         break;
                     }
                 }
-                foreach (EnemyLeader other in Program.enemiesMap2)
+                foreach (EnemyLeader other in GameManager.enemiesMap2)
                 {
                     if (other != enmy && nextX == other._x && nextY == other._y)
                     {
-                        Program.isAlly = true;
+                        GameManager.isAlly = true;
                         break;
                     }
                 }
-                foreach (EnemyLeader other in Program.enemiesMap3)
+                foreach (EnemyLeader other in GameManager.enemiesMap3)
                 {
                     if (other != enmy && nextX == other._x && nextY == other._y)
                     {
-                        Program.isAlly = true;
+                        GameManager.isAlly = true;
                         break;
                     }
                 }
        
-                if (inBounds && !Program.IsTileOccupied(nextX, nextY) && targetTile != '*' && targetTile != '!' && targetTile != 'S' && targetTile != '$' && targetTile != '#' && targetTile != 'w' && targetTile != '%' && targetTile != '@')
+                if (inBounds && !GameManager.IsTileOccupied(nextX, nextY) && targetTile != '*' && targetTile != '!' && targetTile != 'S' && targetTile != '$' && targetTile != '#' && targetTile != 'w' && targetTile != '%' && targetTile != '@')
                 {
                     Console.SetCursorPosition(enmy._x, enmy._y);
-                    char oldTile = Program.map._mapsCurrent[enmy._y][enmy._x];
-                    Program.WriteTileWithColor(oldTile);
+                    char oldTile = GameManager.map._mapsCurrent[enmy._y][enmy._x];
+                    GameManager.WriteTileWithColor(oldTile);
 
                     enmy._x = nextX;
                     enmy._y = nextY;

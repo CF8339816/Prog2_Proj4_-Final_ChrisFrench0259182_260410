@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class Player : Character
     {
@@ -13,7 +13,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         public static int plXP = 0;
         public static int plLevel = 0;
         public Player(string Name, int x, int y, int attack, char symbol, int hp, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) _min_max_x, (int, int) _min_max_y) :
-            base(Name, x, y, attack: Program.plaAtkUP, symbol: '!', hp: Program.plaMaxHP, fgColor: ConsoleColor.DarkBlue, bgColor: ConsoleColor.Blue, (1, 55), (1, 24))
+            base(Name, x, y, attack: GameManager.plaAtkUP, symbol: '!', hp: GameManager.plaMaxHP, fgColor: ConsoleColor.DarkBlue, bgColor: ConsoleColor.Blue, (1, 55), (1, 24))
         {
         }
 
@@ -27,8 +27,8 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             bool hitEnemy = false;
           // bool isNextStepEnemy = true; ////  
           
-            if (Program.map._currentMapIndex == 0)
-              foreach (var enmy in Program.enemiesMap1)  // back in programs possible rename check enemy colisions
+            if (GameManager.map._currentMapIndex == 0)
+              foreach (var enmy in GameManager.enemiesMap1)  // back in programs possible rename check enemy colisions
               {
                                 
 
@@ -39,21 +39,21 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
                         Console.Beep(800, 50);
                         //Console.SetCursorPosition(nextX, nextY);///
-                        Program.ColorFlash();
+                        GameManager.ColorFlash();
                         Console.ResetColor();///
                         enmy._health -= _attack;
                         _health -= enmy._attack;
 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.SetCursorPosition(60, 14);
-                        Console.WriteLine($" {enmy._name} takes {Program.player._attack} points of combat damage");
+                        Console.WriteLine($" {enmy._name} takes {GameManager.player._attack} points of combat damage");
                         Console.SetCursorPosition(60, 15);
                         Console.WriteLine($" {enmy._name} has {enmy._health} health...");
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.SetCursorPosition(60, 17);
-                        Console.WriteLine($" {Program.player._name} takes {enmy._attack} points of combat damage");
+                        Console.WriteLine($" {GameManager.player._name} takes {enmy._attack} points of combat damage");
                         Console.SetCursorPosition(60, 18);
-                        Console.WriteLine($" {Program.player._name} has {Program.player._health} health...");
+                        Console.WriteLine($" {GameManager.player._name} has {GameManager.player._health} health...");
                         //HUD.combat();
 
                         if (_health <= 0 || enmy._health <= 0)
@@ -64,7 +64,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 _health = 0;
                                 Console.SetCursorPosition(60, 20);
                                 Console.WriteLine($" {_name} has {_health} health, {_name} has died");
-                                Program.isPlaying = false;
+                                GameManager.isPlaying = false;
                                 break;//
                             }
                             if (enmy._health <= 0)
@@ -76,7 +76,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 Treasure._gold += 5;
                                 Console.SetCursorPosition(60, 21);
                                 Console.WriteLine($" {enmy._name} has {enmy._health} health, {enmy._name} has died");
-                                Program.isPlaying = true;
+                                GameManager.isPlaying = true;
                                 Console.SetCursorPosition(nextX, nextY);///
                             }
                         }
@@ -84,28 +84,28 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                     }
               }
 
-            if (Program.map._currentMapIndex == 1)
-                foreach (var enmy in Program.enemiesMap2)  // back in programs   possible rename check enemy colisions
+            if (GameManager.map._currentMapIndex == 1)
+                foreach (var enmy in GameManager.enemiesMap2)  // back in programs   possible rename check enemy colisions
                 {
                     if (nextX == enmy._x && nextY == enmy._y)
                     {
                         Console.Beep(800, 50);
                         //Console.SetCursorPosition(nextX, nextY);///
-                        Program.ColorFlash();
+                        GameManager.ColorFlash();
                         Console.ResetColor();///
                         enmy._health -= _attack;
                         _health -= enmy._attack;
 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.SetCursorPosition(60, 14);
-                        Console.WriteLine($" {enmy._name} takes {Program.player._attack} points of combat damage");
+                        Console.WriteLine($" {enmy._name} takes {GameManager.player._attack} points of combat damage");
                         Console.SetCursorPosition(60, 15);
                         Console.WriteLine($" {enmy._name} has {enmy._health} health...");
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.SetCursorPosition(60, 17);
-                        Console.WriteLine($" {Program.player._name} takes {enmy._attack} points of combat damage");
+                        Console.WriteLine($" {GameManager.player._name} takes {enmy._attack} points of combat damage");
                         Console.SetCursorPosition(60, 18);
-                        Console.WriteLine($" {Program.player._name} has {Program.player._health} health...");
+                        Console.WriteLine($" {GameManager.player._name} has {GameManager.player._health} health...");
                         //HUD.combat();
 
                         if (_health <= 0 || enmy._health <= 0)
@@ -116,7 +116,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 _health = 0;
                                 Console.SetCursorPosition(60, 20);
                                 Console.WriteLine($" {_name} has {_health} health, {_name} has died");
-                                Program.isPlaying = false;
+                                GameManager.isPlaying = false;
                                 break;//
                             }
                             if (enmy._health <= 0)
@@ -128,7 +128,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 Treasure._gold += 5;
                                 Console.SetCursorPosition(60, 21);
                                 Console.WriteLine($" {enmy._name} has {enmy._health} health, {enmy._name} has died");
-                                Program.isPlaying = true;
+                                GameManager.isPlaying = true;
                                 Console.SetCursorPosition(nextX, nextY);///
                             }
                         }
@@ -136,28 +136,28 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                     }
                 }
 
-            if (Program.map._currentMapIndex == 2)
-                foreach (var enmy in Program.enemiesMap3)  // back in programs   possible rename check enemy colisions
+            if (GameManager.map._currentMapIndex == 2)
+                foreach (var enmy in GameManager.enemiesMap3)  // back in programs   possible rename check enemy colisions
                 {
                     if (nextX == enmy._x && nextY == enmy._y)
                     {
                         Console.Beep(800, 50);
                         //Console.SetCursorPosition(nextX, nextY);///
-                        Program.ColorFlash();
+                        GameManager.ColorFlash();
                         Console.ResetColor();///
                         enmy._health -= _attack;
                         _health -= enmy._attack;
 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.SetCursorPosition(60, 14);
-                        Console.WriteLine($" {enmy._name} takes {Program.player._attack} points of combat damage");
+                        Console.WriteLine($" {enmy._name} takes {GameManager.player._attack} points of combat damage");
                         Console.SetCursorPosition(60, 15);
                         Console.WriteLine($" {enmy._name} has {enmy._health} health...");
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.SetCursorPosition(60, 17);
-                        Console.WriteLine($" {Program.player._name} takes {enmy._attack} points of combat damage");
+                        Console.WriteLine($" {GameManager.player._name} takes {enmy._attack} points of combat damage");
                         Console.SetCursorPosition(60, 18);
-                        Console.WriteLine($" {Program.player._name} has {Program.player._health} health...");
+                        Console.WriteLine($" {GameManager.player._name} has {GameManager.player._health} health...");
                         //HUD.combat();
 
                         if (_health <= 0 || enmy._health <= 0)
@@ -168,7 +168,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 _health = 0;
                                 Console.SetCursorPosition(60, 20);
                                 Console.WriteLine($" {_name} has {_health} health, {_name} has died");
-                                Program.isPlaying = false;
+                                GameManager.isPlaying = false;
                                 break;//
                             }
                             if (enmy._health <= 0)
@@ -180,35 +180,35 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 Treasure._gold += 5;
                                 Console.SetCursorPosition(60, 21);
                                 Console.WriteLine($" {enmy._name} has {enmy._health} health, {enmy._name} has died");
-                                Program.isPlaying = true;
+                                GameManager.isPlaying = true;
                                 Console.SetCursorPosition(nextX, nextY);///
                             }
                         }
                         break;///
                     }
                 }
-            if (Program.map._currentMapIndex == 3)
-                foreach (var enmy in Program.enemyRiderList)  // back in programs   possible rename check enemy colisions
+            if (GameManager.map._currentMapIndex == 3)
+                foreach (var enmy in GameManager.enemyRiderList)  // back in programs   possible rename check enemy colisions
                 {
                     if (nextX == enmy._x && nextY == enmy._y)
                     {
                         Console.Beep(800, 50);
                         //Console.SetCursorPosition(nextX, nextY);///
-                        Program.ColorFlash();
+                        GameManager.ColorFlash();
                         Console.ResetColor();///
                         enmy._health -= _attack;
                         _health -= enmy._attack;
 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.SetCursorPosition(60, 14);
-                        Console.WriteLine($" {enmy._name} takes {Program.player._attack} points of combat damage");
+                        Console.WriteLine($" {enmy._name} takes {GameManager.player._attack} points of combat damage");
                         Console.SetCursorPosition(60, 15);
                         Console.WriteLine($" {enmy._name} has {enmy._health} health...");
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.SetCursorPosition(60, 17);
-                        Console.WriteLine($" {Program.player._name} takes {enmy._attack} points of combat damage");
+                        Console.WriteLine($" {GameManager.player._name} takes {enmy._attack} points of combat damage");
                         Console.SetCursorPosition(60, 18);
-                        Console.WriteLine($" {Program.player._name} has {Program.player._health} health...");
+                        Console.WriteLine($" {GameManager.player._name} has {GameManager.player._health} health...");
                         //HUD.combat();
 
                         if (_health <= 0 || enmy._health <= 0)
@@ -219,7 +219,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 _health = 0;
                                 Console.SetCursorPosition(60, 20);
                                 Console.WriteLine($" {_name} has {_health} health, {_name} has died");
-                                Program.isPlaying = false;
+                                GameManager.isPlaying = false;
                                 break;//
                             }
                             if (enmy._health <= 0)
@@ -231,7 +231,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                                 Treasure._gold += 5;
                                 Console.SetCursorPosition(60, 21);
                                 Console.WriteLine($" {enmy._name} has {enmy._health} health, {enmy._name} has died");
-                                Program.isPlaying = true;
+                                GameManager.isPlaying = true;
                                 Console.SetCursorPosition(nextX, nextY);///
                             }
                         }
@@ -239,11 +239,11 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                     }
                 }
 
-            if (!hitEnemy && Program.map.CanMoveTo(nextX, nextY))
+            if (!hitEnemy && GameManager.map.CanMoveTo(nextX, nextY))
             {
                 Console.SetCursorPosition(_x, _y);
-                char oldTile = Program.map._mapsCurrent[_y][_x];
-                Program.WriteTileWithColor(oldTile);
+                char oldTile = GameManager.map._mapsCurrent[_y][_x];
+                GameManager.WriteTileWithColor(oldTile);
 
                 _x = nextX;// allowed to move here 
                 _y = nextY;

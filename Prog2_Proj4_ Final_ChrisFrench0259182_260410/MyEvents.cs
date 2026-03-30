@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
 
     public class MyEvents
@@ -15,17 +15,17 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         public static void AmbushMapCheck()
         {
   
-            if (Program.map._currentMapIndex == 3 && !_ambushTriggered) //sets this to run on map 3 only  and only if not alreacdy active
+            if (GameManager.map._currentMapIndex == 3 && !_ambushTriggered) //sets this to run on map 3 only  and only if not alreacdy active
             {
-                if ((Program.map._mapsCurrent[Program.player._y][Program.player._x] == '`'))// defines trigger location for event to begin
+                if ((GameManager.map._mapsCurrent[GameManager.player._y][GameManager.player._x] == '`'))// defines trigger location for event to begin
                 {
                     _ambushTriggered = true;
 
-                    Program.enemyRiderList.Clear();
-                    Program.enemyRiderList.Add(new EnemyRider("Slasher",        44,  5, 10, 'k', 25, ConsoleColor.Yellow, ConsoleColor.DarkMagenta, (1, 55), (1, 24)));
-                    Program.enemyRiderList.Add(new EnemyRider("Crasher",         3, 12,  8, 'k', 20, ConsoleColor.Yellow, ConsoleColor.DarkMagenta, (1, 55), (1, 24)));
-                    Program.enemyRiderList.Add(new EnemyRider("Harrier",        13,  3, 12, 'k', 30, ConsoleColor.Yellow, ConsoleColor.DarkMagenta, (1, 55), (1, 24)));
-                    Program.enemyRiderList.Add(new EnemyRider("PackAlphaNasty", 39, 15, 15, 'K', 200, ConsoleColor.DarkYellow, ConsoleColor.Magenta, (1, 55), (1, 24)));
+                    GameManager.enemyRiderList.Clear();
+                    GameManager.enemyRiderList.Add(new EnemyRider("Slasher",        44,  5, 10, 'k', 25, ConsoleColor.Yellow, ConsoleColor.DarkMagenta, (1, 55), (1, 24)));
+                    GameManager.enemyRiderList.Add(new EnemyRider("Crasher",         3, 12,  8, 'k', 20, ConsoleColor.Yellow, ConsoleColor.DarkMagenta, (1, 55), (1, 24)));
+                    GameManager.enemyRiderList.Add(new EnemyRider("Harrier",        13,  3, 12, 'k', 30, ConsoleColor.Yellow, ConsoleColor.DarkMagenta, (1, 55), (1, 24)));
+                    GameManager.enemyRiderList.Add(new EnemyRider("PackAlphaNasty", 39, 15, 15, 'K', 200, ConsoleColor.DarkYellow, ConsoleColor.Magenta, (1, 55), (1, 24)));
 
                     //Console.SetCursorPosition(60, 0);
                     //Console.WriteLine("here comes a new challenger");
@@ -34,7 +34,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
                 }
             }
-            foreach (var enmyRide in Program.enemyRiderList)
+            foreach (var enmyRide in GameManager.enemyRiderList)
             {
                 if (enmyRide._health > 0) // Only draw if alive
                 {
@@ -52,7 +52,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             // Only move riders if the ambush has started
             if (_ambushTriggered)
             {
-                foreach (var enmyRide in Program.enemyRiderList)
+                foreach (var enmyRide in GameManager.enemyRiderList)
                 {
                     if (enmyRide._health > 0) //verifies enemy alive before move
                     {

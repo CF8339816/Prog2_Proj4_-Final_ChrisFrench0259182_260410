@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class Buffs
     {   
@@ -30,8 +30,8 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                 //if (Player.plXP >100 && Player.plXP < 200)
                 //    { Player.plLevel = 1; } 
                 Player.plLevel = Player.plLevel +1; //increases level by 1
-                Program.plaMaxHP += 10;
-                Program.plaAtkUP += 5;
+                GameManager.plaMaxHP += 10;
+                GameManager.plaAtkUP += 5;
 
             }
         }
@@ -41,7 +41,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             int upATK = randomATK.Next(2, 5);
 
             Atk = upATK; //randomizes attack power up
-            Program.plaAtkUP += Atk; //modifies adds attack buff to attack power
+            GameManager.plaAtkUP += Atk; //modifies adds attack buff to attack power
 
            
         }
@@ -53,7 +53,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             int upHpMax = randomATK.Next(2, 5);
 
             HpMax = upHpMax; //randomizes attack power up
-            Program.plaMaxHP += HpMax; //modifies adds attack buff to attack power
+            GameManager.plaMaxHP += HpMax; //modifies adds attack buff to attack power
 
 
         }

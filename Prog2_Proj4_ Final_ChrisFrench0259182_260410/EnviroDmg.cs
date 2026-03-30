@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 { 
     public class EnviroDmg : Adjustor
     {
@@ -23,19 +23,19 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
         public static void LavaDamage()
         {
-            if (Program.map._mapsCurrent[Program.player._y][Program.player._x] == '%')// applies lava damage 
+            if (GameManager.map._mapsCurrent[GameManager.player._y][GameManager.player._x] == '%')// applies lava damage 
             {
-                Program.player._health = Program.player._health - 30;
+                GameManager.player._health = GameManager.player._health - 30;
 
-                if (Program.player._health < 0)
+                if (GameManager.player._health < 0)
                 {
-                    Program.player._health = 0;
+                    GameManager.player._health = 0;
                 }
                 HUD.AnakinMustafar();
 
-                if (Program.player._health == 0)
+                if (GameManager.player._health == 0)
                 {
-                    Program.isPlaying = false;
+                    GameManager.isPlaying = false;
                 }
             }
         }

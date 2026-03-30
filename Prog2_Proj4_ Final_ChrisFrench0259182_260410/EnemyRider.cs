@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     internal class EnemyRider : Character
     {
@@ -24,15 +24,15 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
              bool inBounds = (nextX >= 1 && nextX <= 55 && nextY >= 1 && nextY <= 24);
 
-            if (enemyRider._x < Program.player._x) nextX++;
-            else if (enemyRider._x > Program.player._x) nextX--;
+            if (enemyRider._x < GameManager.player._x) nextX++;
+            else if (enemyRider._x > GameManager.player._x) nextX--;
 
-            if (enemyRider._y < Program.player._y) nextY++;
-            else if (enemyRider._y > Program.player._y) nextY--;
+            if (enemyRider._y < GameManager.player._y) nextY++;
+            else if (enemyRider._y > GameManager.player._y) nextY--;
 
             bool isPathBlockedByEnemy = false;
 
-            foreach (EnemyRider rideOther in Program.enemyRiderList)
+            foreach (EnemyRider rideOther in GameManager.enemyRiderList)
             {
                 if (rideOther != enemyRider && nextX == rideOther._x && nextY == rideOther._y)
                 {
@@ -41,13 +41,13 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                 }
             }
 
-            char targetTile = Program.map._mapsCurrent[nextY][nextX];
+            char targetTile = GameManager.map._mapsCurrent[nextY][nextX];
 
-            if (inBounds && !isPathBlockedByEnemy && !Program.IsTileOccupied(nextX, nextY) && targetTile != '%' && targetTile != '^' && targetTile != 'w' && targetTile != 'M' && (nextX != Program.player._x || nextY != Program.player._y))
+            if (inBounds && !isPathBlockedByEnemy && !GameManager.IsTileOccupied(nextX, nextY) && targetTile != '%' && targetTile != '^' && targetTile != 'w' && targetTile != 'M' && (nextX != GameManager.player._x || nextY != GameManager.player._y))
             {
                 Console.SetCursorPosition(enemyRider._x, enemyRider._y);
-                char oldTile = Program.map._mapsCurrent[enemyRider._y][enemyRider._x];
-                Program.WriteTileWithColor(oldTile);
+                char oldTile = GameManager.map._mapsCurrent[enemyRider._y][enemyRider._x];
+                GameManager.WriteTileWithColor(oldTile);
 
                 enemyRider._x = nextX;
                 enemyRider._y = nextY;

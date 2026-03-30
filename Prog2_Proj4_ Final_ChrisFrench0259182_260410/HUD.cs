@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class HUD
     {
@@ -17,12 +17,12 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("What is your character's name");
             Console.ForegroundColor = ConsoleColor.Blue;
-            Program.Name = Console.ReadLine();
+            GameManager.Name = Console.ReadLine();
             while (true)
             {
-                if (Program.Name.Length <= Program.MaxNameLLength) break;
+                if (GameManager.Name.Length <= GameManager.MaxNameLLength) break;
 
-                Console.WriteLine($"Error: Input is too long! please limit to 15 characters({Program.Name.Length}/{Program.MaxNameLLength})");
+                Console.WriteLine($"Error: Input is too long! please limit to 15 characters({GameManager.Name.Length}/{GameManager.MaxNameLLength})");
                 alias();
             }
 
@@ -106,7 +106,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(60, 12);
-            Console.WriteLine($" the clueless peon looks up at you and takes {Program.player._attack} points");
+            Console.WriteLine($" the clueless peon looks up at you and takes {GameManager.player._attack} points");
             Console.SetCursorPosition(60, 13);
             Console.WriteLine($" of combat damage");
             Console.SetCursorPosition(60, 14);
@@ -115,9 +115,9 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             Console.WriteLine($"do you think it has?");
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.SetCursorPosition(60, 17);
-            Console.WriteLine($" {Program.player._name} takes 2 points of combat damage, ");
+            Console.WriteLine($" {GameManager.player._name} takes 2 points of combat damage, ");
             Console.SetCursorPosition(60, 18);
-            Console.WriteLine($" '...tis but a scratch' {Program.player._name} has {Program.player._health} health...");
+            Console.WriteLine($" '...tis but a scratch' {GameManager.player._name} has {GameManager.player._health} health...");
         }
 
         public static void Instructions()
@@ -133,7 +133,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(58, 1);
-            Console.WriteLine($"Name:{Program.player._name} Health:{Program.player._health}/{Program.plaMaxHP} attack:{Program.plaAtkUP} Xp:{Player.plXP} Level:{Player.plLevel}");
+            Console.WriteLine($"Name:{GameManager.player._name} Health:{GameManager.player._health}/{GameManager.plaMaxHP} attack:{GameManager.plaAtkUP} Xp:{Player.plXP} Level:{Player.plLevel}");
             Console.SetCursorPosition(58, 2);
             Console.WriteLine($"Gold:{Treasure._gold} Captives Freed:{Captive._freed}");
             Console.ResetColor();
@@ -142,7 +142,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.SetCursorPosition(60, 22);// outputs player death and end of game prompts to exit
-            Console.WriteLine($" {Program.player._name} has {Program.player._health} health, {Program.player._name} has died ");
+            Console.WriteLine($" {GameManager.player._name} has {GameManager.player._health} health, {GameManager.player._name} has died ");
             Console.SetCursorPosition(60, 23); 
             Console.WriteLine($"with {Treasure._gold} gold on them and freed {Captive._freed} captives who were sadly ");
             Console.SetCursorPosition(60, 24);
@@ -155,11 +155,11 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.SetCursorPosition(58, 22);// outputs player death and end of game prompts to exit
-            Console.WriteLine($"{Program.player._name} has reached the goal with {Program.player._health} health, ");
+            Console.WriteLine($"{GameManager.player._name} has reached the goal with {GameManager.player._health} health, ");
             Console.SetCursorPosition(58, 23);
-            Console.WriteLine($"{Program.player._name} is safe with {Treasure._gold} golds and freed {Captive._freed} captives.");
+            Console.WriteLine($"{GameManager.player._name} is safe with {Treasure._gold} golds and freed {Captive._freed} captives.");
             Console.SetCursorPosition(58, 24);
-            Console.WriteLine($"{Program.player._name}'s legend will be told till the ends of time.");
+            Console.WriteLine($"{GameManager.player._name}'s legend will be told till the ends of time.");
             Console.ReadKey(true);
             Console.ResetColor();
         }
@@ -169,13 +169,13 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(58, 5);
-            Console.WriteLine($"{Program.player._name} loots the Holy Fraculator! A.K.A. The Peon");
+            Console.WriteLine($"{GameManager.player._name} loots the Holy Fraculator! A.K.A. The Peon");
             Console.SetCursorPosition(58, 6);       
             Console.WriteLine($"Mulcher 6000. Fine print on 1 side says 'Face Towards Peon'.");    
             Console.SetCursorPosition(58, 7);
             Console.WriteLine($"A wave of energy pulses out and kills all low level peons");
             Console.SetCursorPosition(58, 8);
-            Console.WriteLine($"on this stage {Program.player._name} gets {PowerOrb._XP} XP...woooo!");
+            Console.WriteLine($"on this stage {GameManager.player._name} gets {PowerOrb._XP} XP...woooo!");
             Console.ResetColor();
 
 
@@ -199,9 +199,9 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.SetCursorPosition(60, 5);
-            Console.WriteLine($" {Program.player._name} loots {Treasure.loot} amounts of golds! ");
+            Console.WriteLine($" {GameManager.player._name} loots {Treasure.loot} amounts of golds! ");
             Console.SetCursorPosition(60, 6);
-            Console.WriteLine($"{Program.player._name} now has {Treasure.goldie} gold...woooo!");
+            Console.WriteLine($"{GameManager.player._name} now has {Treasure.goldie} gold...woooo!");
 
             Console.ResetColor();
 
@@ -214,7 +214,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
             Console.ForegroundColor = ConsoleColor.Gray;
 
             Console.SetCursorPosition(60, 4);
-            Console.WriteLine($"{Program.player._name} has freed a captive... Good Job! They thank");
+            Console.WriteLine($"{GameManager.player._name} has freed a captive... Good Job! They thank");
                 Console.SetCursorPosition(60, 5);
             Console.WriteLine($"you with a small power up an a couple of gold they hid.");
 
@@ -225,9 +225,9 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(60, 8);
-            Console.WriteLine($" {Program.player._name} takes 30 points of lava damage");
+            Console.WriteLine($" {GameManager.player._name} takes 30 points of lava damage");
             Console.SetCursorPosition(60, 9);
-            Console.WriteLine($" {Program.player._name} now has {Program.player._health} HP");
+            Console.WriteLine($" {GameManager.player._name} now has {GameManager.player._health} HP");
             Console.ResetColor();
         }
 

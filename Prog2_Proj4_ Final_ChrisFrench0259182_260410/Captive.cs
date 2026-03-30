@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class Captive : Collectable
     {
@@ -32,9 +32,9 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 
         public static void DrawPrisoner()
         {
-            int currentMap = Program.map._currentMapIndex;
+            int currentMap = GameManager.map._currentMapIndex;
 
-            if (!Program.MapCaptiveRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected captives
+            if (!GameManager.MapCaptiveRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected captives
             {
                 List<(int x, int y)> captives = new List<(int x, int y)>();
                 for (int i = 0; i < _prisonerCount; i++)
@@ -46,17 +46,17 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                         capSpawnX = _prisonerSpawn.Next(_prisoner_min_max_x.Item1, _prisoner_min_max_x.Item2 + 1);///
                         capSpawnY = _prisonerSpawn.Next(_prisoner_min_max_y.Item1, _prisoner_min_max_y.Item2 + 1);///
 
-                        if (!Program.IsTileOccupied(capSpawnX, capSpawnY))
+                        if (!GameManager.IsTileOccupied(capSpawnX, capSpawnY))
                         {
                             captives.Add((capSpawnX, capSpawnY));
                             valid = true;
                         }
                     }
                 }
-                Program.MapCaptiveRegistry[currentMap] = captives;
+                GameManager.MapCaptiveRegistry[currentMap] = captives;
             }
                         
-            foreach (var slaves in Program.MapCaptiveRegistry[currentMap])// checks the dictionary to draw from fro the currerent map
+            foreach (var slaves in GameManager.MapCaptiveRegistry[currentMap])// checks the dictionary to draw from fro the currerent map
             {
                 Console.SetCursorPosition(slaves.x, slaves.y);
                 Console.ForegroundColor = ConsoleColor.White;
@@ -66,14 +66,14 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         }
         public static void CheckCapCollection()
         {
-            int currentMap = Program.map._currentMapIndex;
-            if (!Program.MapCaptiveRegistry.ContainsKey(currentMap)) return;
+            int currentMap = GameManager.map._currentMapIndex;
+            if (!GameManager.MapCaptiveRegistry.ContainsKey(currentMap)) return;
 
-            var slaves = Program.MapCaptiveRegistry[currentMap];
+            var slaves = GameManager.MapCaptiveRegistry[currentMap];
 
             for (int i = slaves.Count - 1; i >= 0; i--)
             {
-                if (Program.player._x == slaves[i].x && Program.player._y == slaves[i].y)
+                if (GameManager.player._x == slaves[i].x && GameManager.player._y == slaves[i].y)
                 {
                     _freed +=1;
                     Buffs.IncreaseXP(5);

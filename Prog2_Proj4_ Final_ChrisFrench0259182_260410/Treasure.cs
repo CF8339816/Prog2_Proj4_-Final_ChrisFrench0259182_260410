@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace prog2_Proj3_beta_ChrisFrench0259182_260324
+namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class Treasure : Collectable
     {
         public static bool _goldTreasure = true;
         public static Random _goldPileSpawn = new Random();
         public static Random _goldCount = new Random();
-        public static (int, int) _plPosition = (Program.player._x, Program.player._y);
+        public static (int, int) _plPosition = (GameManager.player._x, GameManager.player._y);
         //public static (int, int) goldLoc = (treasure_x_pos, treasure_y_pos);
         public static int treasure_x_pos;
         public static int treasure_y_pos;
@@ -36,9 +36,9 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         }
         public static void DrawGold()
         {
-            int currentMap = Program.map._currentMapIndex;
+            int currentMap = GameManager.map._currentMapIndex;
                      
-            if (!Program.MapTreasureRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected treasures
+            if (!GameManager.MapTreasureRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected treasures
             {
                 _gpCount = _goldCount.Next(6, 12);
                 List<(int x, int y)> goldPiles = new List<(int x, int y)>();
@@ -51,17 +51,17 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
                         tSpawnX = _goldPileSpawn.Next(treasure_min_max_x.Item1, treasure_min_max_x.Item2 + 1);
                         tSpawnY = _goldPileSpawn.Next(treasure_min_max_y.Item1, treasure_min_max_y.Item2 + 1);
 
-                        if (!Program.IsTileOccupied(tSpawnX, tSpawnY))
+                        if (!GameManager.IsTileOccupied(tSpawnX, tSpawnY))
                         {
                            goldPiles.Add((tSpawnX, tSpawnY));
                             valid = true;
                         }
                     }
                 }
-                Program.MapTreasureRegistry[currentMap] = goldPiles;
+                GameManager.MapTreasureRegistry[currentMap] = goldPiles;
             }
 
-            foreach (var golds in Program.MapTreasureRegistry[currentMap])//Drawing  from the dictionary list for the current map
+            foreach (var golds in GameManager.MapTreasureRegistry[currentMap])//Drawing  from the dictionary list for the current map
             {
                 Console.SetCursorPosition(golds.x, golds.y);
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -71,14 +71,14 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         }
         public static void CheckTreasureCollection()
         {
-            int currentMap = Program.map._currentMapIndex;
-            if (!Program.MapTreasureRegistry.ContainsKey(currentMap)) return;
+            int currentMap = GameManager.map._currentMapIndex;
+            if (!GameManager.MapTreasureRegistry.ContainsKey(currentMap)) return;
 
-            var piles = Program.MapTreasureRegistry[currentMap];
+            var piles = GameManager.MapTreasureRegistry[currentMap];
 
             for (int i = piles.Count - 1; i >= 0; i--)
             {
-                if (Program.player._x == piles[i].x && Program.player._y == piles[i].y)
+                if (GameManager.player._x == piles[i].x && GameManager.player._y == piles[i].y)
                 {
                    
                     loot= _lootRando.Next(15, 35);
