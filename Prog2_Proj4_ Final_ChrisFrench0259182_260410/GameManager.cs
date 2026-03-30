@@ -31,11 +31,11 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public static Dictionary<int, List<(int x, int y)>> MapPeonRegistry = new Dictionary<int, List<(int x, int y)>>();
         public static bool isPlaying = true;
         public static bool isAlly = false; //sets bool to check for other allies in movement path
-        public GameManager()
-        {
+        //public GameManager()
+        //{
 
 
-        }
+        //}
 
 
 
@@ -85,11 +85,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             }
             return false;
         }
-        public static void Main(string[] args)
-        {
-
-        }
-        public void StartGame()
+      
+        public static void StartGame()
         {
             Console.SetCursorPosition(0, 0);
             HUD.alias();

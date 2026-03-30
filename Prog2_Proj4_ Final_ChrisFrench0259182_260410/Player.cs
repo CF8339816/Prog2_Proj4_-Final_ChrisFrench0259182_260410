@@ -13,7 +13,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public static int plXP = 0;
         public static int plLevel = 0;
         public Player(string Name, int x, int y, int attack, char symbol, int hp, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) _min_max_x, (int, int) _min_max_y) :
-            base(Name, x, y, attack: GameManager.plaAtkUP, symbol: '!', hp: GameManager.plaMaxHP, fgColor: ConsoleColor.DarkBlue, bgColor: ConsoleColor.Blue, (1, 55), (1, 24))
+            base(Name, x, y, attack: GameManager.plaAtkUP, symbol: '!', hp: GameManager.plaMaxHP, fgColor: ConsoleColor.DarkBlue, bgColor: ConsoleColor.White, (1, 55), (1, 24))
         {
         }
 

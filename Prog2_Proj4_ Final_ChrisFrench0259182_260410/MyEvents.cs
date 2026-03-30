@@ -12,9 +12,25 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
     {
        public static bool _ambushTriggered = false;
 
+        
+        
+        
+        public static void AmbushTriggered()
+        {
+            if (GameManager.map._currentMapIndex == 3 && (GameManager.player._x >= RecTar.min_x) && _ambushTriggered = false)
+            {
+                _ambushTriggered = true;
+            }
+            if (GameManager.map._currentMapIndex == 3 && ( GameManager.player._y >= RecTar.min_y) && _ambushTriggered = false)
+            {
+                _ambushTriggered = true;
+            }
+
+        }
+        
         public static void AmbushMapCheck()
         {
-  
+            
             if (GameManager.map._currentMapIndex == 3 && !_ambushTriggered) //sets this to run on map 3 only  and only if not alreacdy active
             {
                 if ((GameManager.map._mapsCurrent[GameManager.player._y][GameManager.player._x] == '`'))// defines trigger location for event to begin
