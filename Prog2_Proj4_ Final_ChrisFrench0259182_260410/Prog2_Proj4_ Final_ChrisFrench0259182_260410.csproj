@@ -65,7 +65,7 @@
     <Compile Include="CollectSpawner.cs" />
     <Compile Include="rectangle.cs" />
     <Compile Include="RecTrigX.cs" />
-    <Compile Include="RecTrigY.cs" />
+    <Compile Include="RecTrig.cs" />
     <Compile Include="Treasure.cs" />
   </ItemGroup>
   <ItemGroup>
