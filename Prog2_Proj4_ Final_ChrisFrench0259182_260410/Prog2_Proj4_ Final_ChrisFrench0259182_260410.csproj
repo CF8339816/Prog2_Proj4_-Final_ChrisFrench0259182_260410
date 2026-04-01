@@ -64,7 +64,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CollectSpawner.cs" />
     <Compile Include="rectangle.cs" />
-    <Compile Include="RecTrigX.cs" />
     <Compile Include="RecTrig.cs" />
     <Compile Include="Treasure.cs" />
   </ItemGroup>

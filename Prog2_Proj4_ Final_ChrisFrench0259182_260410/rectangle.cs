@@ -6,25 +6,31 @@ using System.Threading.Tasks;
 
 namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 {
-    internal class rectangle
+    public class rectangle
     {
 
         public string _name { get; set; }
 
-        public ConsoleColor _bgColor { get; set; }
-        public ConsoleColor _fgColor { get; set; }
-
-        public (int, int) _min_max_x { get; set; }
-        public (int, int) _min_max_y { get; set; }
-
-        protected rectangle(string Name, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) Rect_min_max_x, (int, int) Rect_min_max_y)
+        //public ConsoleColor _bgColor { get; set; }
+        //public ConsoleColor _fgColor { get; set; }
+        public static bool _isTriggered { get; set; }
+        public int _min_x { get; set; }
+        public int _min_y { get; set; }
+        public int _max_x { get; set; }
+        public int _max_y { get; set; }
+        protected rectangle(string Name, /*ConsoleColor fgColor, ConsoleColor bgColor,*/ int Rect_min_x, int Rect_max_x, int Rect_min_y, int Rect_max_y, bool IsTriggered)
         {
             _name = Name;
-            _bgColor = bgColor;
-            _fgColor = fgColor;
-            _min_max_x = Rect_min_max_x;
-            _min_max_y = Rect_min_max_y;
-        }
+            //_bgColor = bgColor;
+            //_fgColor = fgColor;
+            _min_x = Rect_min_x;
+            _min_y = Rect_min_y;
+            _max_x = Rect_max_x;
+            _max_y = Rect_max_y;
+            _isTriggered = IsTriggered;
+
 
     }
+
+}
 }

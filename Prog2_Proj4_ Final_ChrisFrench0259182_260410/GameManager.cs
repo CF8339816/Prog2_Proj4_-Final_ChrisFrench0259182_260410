@@ -135,6 +135,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 if (input == ConsoleKey.S) plY = 1;
 
                 if (input == ConsoleKey.Q) isPlaying = false; //Quit the 'is playing' loop
+                if (input == ConsoleKey.R) StartGame();//Restarts the game
                 HUD.ClearMessage();
                 player.Move(plX, plY);
                 Treasure.CheckTreasureCollection();
@@ -412,8 +413,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             }
             if (GameManager.map._currentMapIndex == 3)
             {
-                MyEvents.AmbushMapCheck();
-
+               // MyEvents.AmbushMapCheck();
+                MyEvents.AmbushTriggered(RecTrig);
             }
             Console.SetCursorPosition(player._x, player._y);
             Console.ForegroundColor = player._fgColor;
