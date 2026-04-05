@@ -65,6 +65,7 @@
     <Compile Include="rectangle.cs" />
     <Compile Include="RecTrig.cs" />
     <Compile Include="Treasure.cs" />
+    <Compile Include="ViewPort.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

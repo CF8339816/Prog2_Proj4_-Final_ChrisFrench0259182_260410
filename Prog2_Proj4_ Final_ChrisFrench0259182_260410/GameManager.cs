@@ -31,12 +31,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public static Dictionary<int, List<(int x, int y)>> MapPeonRegistry = new Dictionary<int, List<(int x, int y)>>();
         public static bool isPlaying = true;
         public static bool isAlly = false; //sets bool to check for other allies in movement path
-        //public GameManager()
-        //{
-
-
-        //}
-
+      
 
 
         public static bool IsTileOccupied(int x, int y)
@@ -117,6 +112,9 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
             while (isPlaying)
             {
+                //viewport.CheckConsoleSize();
+                //viewport.CheckConsoleSize();
+
                 Console.BackgroundColor = ConsoleColor.Black;
                 HUD.Instructions();
                 player._name = Name;
@@ -236,8 +234,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 
 
             }
-
-           // 
+        
    
             if ((map._mapsCurrent[player._y][player._x] == 'X') || (player._health == 0))
             {
@@ -261,7 +258,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         }
 
 
-
+        //
         public static void WriteTileWithColor(char tile) //colours the map tiles and writes them to screen
         {
             if (tile == '%')
@@ -386,7 +383,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             StartGame();
 
         }
-
+     
         public static void resetAll()
         {
             player._x = 3;
