@@ -141,12 +141,15 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public static void plDied()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.SetCursorPosition(60, 22);// outputs player death and end of game prompts to exit
+            Console.SetCursorPosition(60, 19);// outputs player death and end of game prompts to exit
             Console.WriteLine($" {GameManager.player._name} has {GameManager.player._health} health, {GameManager.player._name} has died ");
-            Console.SetCursorPosition(60, 23); 
+            Console.SetCursorPosition(60, 21); 
             Console.WriteLine($"with {Treasure._gold} gold on them and freed {Captive._freed} captives who were sadly ");
-            Console.SetCursorPosition(60, 24);
+            Console.SetCursorPosition(60, 22);
             Console.WriteLine("recaptured, and very mean things were done to them.");
+            Console.SetCursorPosition(60, 23);
+            Console.WriteLine("Please press 'R' to  replay any other key to exit");
+            Console.ReadKey(true);
             Console.ReadKey(true);
             Console.ResetColor();
         }
@@ -160,6 +163,9 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             Console.WriteLine($"{GameManager.player._name} is safe with {Treasure._gold} golds and freed {Captive._freed} captives.");
             Console.SetCursorPosition(58, 22);
             Console.WriteLine($"{GameManager.player._name}'s legend will be told till the ends of time.");
+            Console.SetCursorPosition(60, 23);
+            Console.WriteLine("Please press 'R' to  replay, any other key to exit");
+            Console.ReadKey(true);
             Console.ReadKey(true);
             Console.ResetColor();
         }
@@ -183,13 +189,15 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         }
         public static void Farewell()
         {
+            ClearMessage();
+
+
             Console.ForegroundColor = ConsoleColor.Yellow;
            
            
-            Console.SetCursorPosition(60, 23);
-            Console.WriteLine("We hope you come back soon... Please press any key to exit");
+          
             Console.SetCursorPosition(60, 24);
-            Console.WriteLine("Please press 'R' to  replay");
+            Console.WriteLine("We hope you come back soon... Please press any key to exit");
             Console.ReadKey(true);
             Console.WriteLine("\n\n\n\n\n\n");
             Console.ResetColor();

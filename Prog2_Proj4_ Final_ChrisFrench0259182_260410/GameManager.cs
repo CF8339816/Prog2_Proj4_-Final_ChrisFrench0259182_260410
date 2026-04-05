@@ -85,7 +85,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             }
             return false;
         }
-      
+
         public static void StartGame()
         {
             Console.SetCursorPosition(0, 0);
@@ -233,19 +233,33 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 DrawEntities();
                 Thread.Sleep(50);///
                 HUD.plStats();
+                
+
             }
 
+           // 
+   
             if ((map._mapsCurrent[player._y][player._x] == 'X') || (player._health == 0))
             {
                 if (player._health == 0)
-                { HUD.plDied(); }
+                { HUD.plDied();
+                    ConsoleKey input = Console.ReadKey(true).Key;
+                   if (input == ConsoleKey.R) Restart(); 
+                }
                 if (map._mapsCurrent[player._y][player._x] == 'X')
                 {
                     isPlaying = false;
                     HUD.plWin();
+                    ConsoleKey input = Console.ReadKey(true).Key;
+                    if (input == ConsoleKey.R) Restart();
+
+                }
+                else
+                {
+                    HUD.Farewell();
                 }
             }
-            HUD.Farewell();
+         
         }
 
 
