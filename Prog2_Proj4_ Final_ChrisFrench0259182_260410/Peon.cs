@@ -24,7 +24,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public Peon(string Name, int x, int y, int attack, char symbol, int hp, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) _min_max_x, (int, int) _min_max_y) : 
             base("Peon", x, y, 2, '6', 3, fgColor: ConsoleColor.Green, bgColor: ConsoleColor.Black, (1, 55), (1, 24))
         {
-            Name = "hostage";
+            Name = "Peon";
             _peonCount = 9;
             _peon_x_pos = x;
             _peon_y_pos = y;
