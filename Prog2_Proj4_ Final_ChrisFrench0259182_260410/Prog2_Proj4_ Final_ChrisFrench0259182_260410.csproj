@@ -56,7 +56,6 @@
     <Compile Include="HUD.cs" />
     <Compile Include="LoadMap.cs" />
     <Compile Include="MyEvents.cs" />
-    <Compile Include="OutputRec.cs" />
     <Compile Include="Peon.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PowerOrb.cs" />

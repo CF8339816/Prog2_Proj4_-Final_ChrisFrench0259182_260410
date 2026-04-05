@@ -124,7 +124,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         {
             Console.SetCursorPosition(0, 26);
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("Press any Key to start... Use W,A,S,D  or arrow keys to move around the map...Press 'Q' to exit...\n" +
+            Console.WriteLine("Press any Key to start... Use W,A,S,D  or arrow keys to move around the map...Press 'Q' to exit, 'R' to restart...\n" +
                 "Fight enemies by manouvering to them or try to avoid them... Get to your castle [XXX].\n" +
                 " Lava '%' will damage you, Water 'w' will heal you, '@' and '*' will port you forward and back through the maps");
             Console.ResetColor();
@@ -154,11 +154,11 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public static void plWin()
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.SetCursorPosition(58, 22);// outputs player death and end of game prompts to exit
+            Console.SetCursorPosition(58, 20);// outputs player death and end of game prompts to exit
             Console.WriteLine($"{GameManager.player._name} has reached the goal with {GameManager.player._health} health, ");
-            Console.SetCursorPosition(58, 23);
+            Console.SetCursorPosition(58, 21);
             Console.WriteLine($"{GameManager.player._name} is safe with {Treasure._gold} golds and freed {Captive._freed} captives.");
-            Console.SetCursorPosition(58, 24);
+            Console.SetCursorPosition(58, 22);
             Console.WriteLine($"{GameManager.player._name}'s legend will be told till the ends of time.");
             Console.ReadKey(true);
             Console.ResetColor();
@@ -186,8 +186,10 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             Console.ForegroundColor = ConsoleColor.Yellow;
            
            
-            Console.SetCursorPosition(60, 25);
+            Console.SetCursorPosition(60, 23);
             Console.WriteLine("We hope you come back soon... Please press any key to exit");
+            Console.SetCursorPosition(60, 24);
+            Console.WriteLine("Please press 'R' to  replay");
             Console.ReadKey(true);
             Console.WriteLine("\n\n\n\n\n\n");
             Console.ResetColor();

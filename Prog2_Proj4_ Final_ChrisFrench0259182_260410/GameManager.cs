@@ -95,7 +95,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
             Console.CursorVisible = false;
             map.DrawMap();
-            MyEvents.AmbushMapCheck();
+            MyEvents.AmbushTriggered();
 
             enemiesMap1.Clear();
             enemiesMap1.Add(new EnemyLeader("Gobbo", 50, 4, 10, '&', 25, ConsoleColor.Magenta, ConsoleColor.DarkGreen, (1, 55), (1, 24)));
@@ -135,7 +135,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 if (input == ConsoleKey.S) plY = 1;
 
                 if (input == ConsoleKey.Q) isPlaying = false; //Quit the 'is playing' loop
-                if (input == ConsoleKey.R) StartGame();//Restarts the game
+                if (input == ConsoleKey.R) Restart();//Restarts the game
                 HUD.ClearMessage();
                 player.Move(plX, plY);
                 Treasure.CheckTreasureCollection();
@@ -366,7 +366,13 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             Console.Write(player._symbol);
         }
 
+        public static void Restart()
+        {
 
+            Console.Clear();
+            StartGame();
+
+        }
 
         /*>>>>>>*/
         public static void DrawEntities()// draws the player and the enemy symbols/ sprites
@@ -414,7 +420,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             if (GameManager.map._currentMapIndex == 3)
             {
                // MyEvents.AmbushMapCheck();
-                MyEvents.AmbushTriggered(RecTrig);
+                MyEvents.AmbushTriggered();
             }
             Console.SetCursorPosition(player._x, player._y);
             Console.ForegroundColor = player._fgColor;
