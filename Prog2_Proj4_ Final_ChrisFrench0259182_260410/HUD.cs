@@ -149,8 +149,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             Console.WriteLine("recaptured, and very mean things were done to them.");
             Console.SetCursorPosition(60, 23);
             Console.WriteLine("Please press 'R' to  replay any other key to exit");
-            Console.ReadKey(true);
-            Console.ReadKey(true);
+            //Console.ReadKey(true);
+            //Console.ReadKey(true);
             Console.ResetColor();
         }
 
@@ -165,8 +165,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             Console.WriteLine($"{GameManager.player._name}'s legend will be told till the ends of time.");
             Console.SetCursorPosition(60, 23);
             Console.WriteLine("Please press 'R' to  replay, any other key to exit");
-            Console.ReadKey(true);
-            Console.ReadKey(true);
+            //Console.ReadKey(true);
+            //Console.ReadKey(true);
             Console.ResetColor();
         }
 
