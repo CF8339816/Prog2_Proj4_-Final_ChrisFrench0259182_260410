@@ -140,7 +140,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 Captive.CheckCapCollection();
                 PowerOrb.CheckOrbCollection();
                 Peon.CheckPeonCollection();
-
+                MyEvents.UpdateRiders();
+                MyEvents.CheckForAmbush();
                 /*>>>>>>*/
                 var newSpawn = map.MapChanger(player._x, player._y); //references the map changer function
 
@@ -401,6 +402,9 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             MapOrbRegistry.Clear();
             MapPeonRegistry.Clear();
 
+            MyEvents._ambushTriggered = false;
+            MyEvents.isTriggered = false;
+         
             map = new LoadMap();
 
         }
