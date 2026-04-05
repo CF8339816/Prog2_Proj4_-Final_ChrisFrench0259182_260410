@@ -135,7 +135,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 if (input == ConsoleKey.S) plY = 1;
 
                 if (input == ConsoleKey.Q) isPlaying = false; //Quit the 'is playing' loop
-                if (input == ConsoleKey.R) Restart();//Restarts the game
+               // if (input == ConsoleKey.R) Restart();return;//Restarts the game
                 HUD.ClearMessage();
                 player.Move(plX, plY);
                 Treasure.CheckTreasureCollection();
@@ -243,15 +243,13 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             {
                 if (player._health == 0)
                 { HUD.plDied();
-                    ConsoleKey input = Console.ReadKey(true).Key;
-                   if (input == ConsoleKey.R) Restart(); 
+                  
                 }
                 if (map._mapsCurrent[player._y][player._x] == 'X')
                 {
                     isPlaying = false;
                     HUD.plWin();
-                    ConsoleKey input = Console.ReadKey(true).Key;
-                    if (input == ConsoleKey.R) Restart();
+                    
 
                 }
                 else
@@ -382,12 +380,33 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
         public static void Restart()
         {
-
+            isPlaying = true;
             Console.Clear();
+            resetAll();
             StartGame();
 
         }
 
+        public static void resetAll()
+        {
+            player._x = 3;
+            player._y = 3;
+            player._health = plaMaxHP;
+            player._attack = plaAtkUP;
+            
+            enemiesMap1.Clear();
+            enemiesMap2.Clear();
+            enemiesMap3.Clear();
+            enemyRiderList.Clear();
+
+            MapTreasureRegistry.Clear();
+            MapCaptiveRegistry.Clear();
+            MapOrbRegistry.Clear();
+            MapPeonRegistry.Clear();
+
+            map = new LoadMap();
+
+        }
         /*>>>>>>*/
         public static void DrawEntities()// draws the player and the enemy symbols/ sprites
         {

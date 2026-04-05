@@ -124,7 +124,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         {
             Console.SetCursorPosition(0, 26);
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("Press any Key to start... Use W,A,S,D  or arrow keys to move around the map...Press 'Q' to exit, 'R' to restart...\n" +
+            Console.WriteLine("Press any Key to start... Use W,A,S,D  or arrow keys to move around the map...Press 'Q' to exit, " +
                 "Fight enemies by manouvering to them or try to avoid them... Get to your castle [XXX].\n" +
                 " Lava '%' will damage you, Water 'w' will heal you, '@' and '*' will port you forward and back through the maps");
             Console.ResetColor();

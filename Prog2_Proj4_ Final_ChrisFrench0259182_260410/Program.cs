@@ -17,9 +17,29 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
     {
         public static void Main(string[] args)
         {
+            bool replay = true;
 
-            GameManager.StartGame();
+            while (replay)
+            {
+                GameManager.StartGame();
 
+                ConsoleKey input = Console.ReadKey(true).Key;
+                if (input == ConsoleKey.R)
+                {
+                    GameManager.isPlaying = true;
+                    replay = true;
+                    GameManager.Restart();
+                    return;
+                }
+                if (input != ConsoleKey.R)
+                {
+                    replay = false; 
+                }
+                Console.Clear();
+
+            }
+
+            //GameManager.StartGame();
 
 
         }
