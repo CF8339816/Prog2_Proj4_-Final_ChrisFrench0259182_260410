@@ -13,30 +13,62 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public static bool _newPeon = true;
         public static Random _peonSpawn = new Random();
         public static int _peonCount = 9;
-        public static int _peon_x_pos;
-        public static int _peon_y_pos;
+        public static int _x_pos;
+        public static int _y_pos;
         public static (int, int) _peon_min_max_x = (1, 55);
         public static (int, int) _peon_min_max_y = (1, 24);
         public static int _defeated;
        // public static Random _rando = new Random();
- 
+       // public static List<Peon> peon = new List<Peon>();
 
         public Peon(string Name, int x, int y, int attack, char symbol, int hp, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) _min_max_x, (int, int) _min_max_y) : 
             base("Peon", x, y, 2, '6', 3, fgColor: ConsoleColor.Green, bgColor: ConsoleColor.Black, (1, 55), (1, 24))
-        {
+        { 
             Name = "Peon";
             _peonCount = 9;
-            _peon_x_pos = x;
-            _peon_y_pos = y;
-          
+            _x_pos = x;
+            _y_pos = y;
 
+         
         }
 
 
-                       
+        /*
+        create peon list 
+        create random x location
+        create random y location
+        Loop
+        generate peons to fill list assigning random  x and y locations for each iteration
+
+        draw ie  6 peons on the first page 11 on the second page and 8 on the third map number of peons per map from overall list 
+         */
+        /*
+        public void PeonList()
+        {
+            _x_pos = new _rando(1, 55);
+            _y_pos = new _rando(1, 24);
+
+            peon.Clear();
+            peon.Add(new Peon("Peon", _x_pos, _y_pos, 2, '6', 3, fgColor: ConsoleColor.Green, bgColor: ConsoleColor.Black, (1, 55), (1, 24)));
+
+
+
+
+        }
+
+        */
         public static void DrawPeon()
         {
-            if (GameManager.map._currentMapIndex < 3) {
+            /*
+                        Console.SetCursorPosition(_x_pos, _y_pos);
+                        Console.ForegroundColor = _fgColor;
+                        Console.BackgroundColor = _bgColor;
+                        Console.Write(_symbol);
+
+             */
+
+            if (GameManager.map._currentMapIndex < 3)
+            {
                 int currentMap = GameManager.map._currentMapIndex;
 
                 if (!GameManager.MapPeonRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected captives
@@ -70,6 +102,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 }
                 Console.ResetColor();
             }
+
         }
         public static void CheckPeonCollection()
         {

@@ -11,6 +11,15 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     class GameManager
 
+
+    /// <summary>
+ /// remove all statics when rewriting the code this summer. 
+ /// not enough time to get thaqt sorted currently with the other assignments due at same timeframe as this one.
+    /// </summary>
+
+
+
+
     {
         //  public static LoadMap map = new LoadMap();
         // public static bool isPlaying = true;
@@ -140,6 +149,21 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 Captive.CheckCapCollection();
                 PowerOrb.CheckOrbCollection();
                 Peon.CheckPeonCollection();
+
+//loop through Peons
+// if player pos = peon pos (X AND Y)
+// THEN PLAYER TAKES DAMAGE
+//PEON TAKES DAMAGE
+//treasure awarded
+//clears peon position
+// HUD OUTPUT  for combat damage 
+//
+
+
+
+
+
+
                 MyEvents.UpdateRiders();
                 MyEvents.CheckForAmbush();
                 /*>>>>>>*/

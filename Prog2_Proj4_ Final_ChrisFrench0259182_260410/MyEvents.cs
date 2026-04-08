@@ -13,21 +13,23 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
     public class MyEvents
     {
        public static bool _ambushTriggered = false;
-        public static bool isTriggered = false;
+       public static bool isTriggered = false;
   
-            public static RecTrig recTrig = new RecTrig("trig", 0, 13,  0, 8, false);
+          public static RecTrig recTrig = new RecTrig("trig", 0, 13,  0, 8, false);
 
        
         public static void CheckForAmbush()
         {
             if (GameManager.map._currentMapIndex == 3 && !_ambushTriggered)
             {
-                if (GameManager.player._x > recTrig._max_x || GameManager.player._y > recTrig._max_y)
-                {
-                    //isTriggered = true;
-                    _ambushTriggered = true;
+                
+                    recTrig.ActivateTrigger();
+                //if (GameManager.player._x > recTrig._max_x || GameManager.player._y > recTrig._max_y)
+                //{
+               isTriggered = true;
+                _ambushTriggered = true;
                     AmbushTriggered();
-                }
+                //}
 
             }
         }
@@ -35,11 +37,11 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public static void AmbushTriggered()
         {
             if (isTriggered) return;
+            //if (RecTrig._isTriggered);
+            if (GameManager.map._currentMapIndex == 3)
+            {
 
-            if (GameManager.map._currentMapIndex == 3  )
-            {     
-                
-             recTrig.ActivateTrigger();
+                recTrig.ActivateTrigger();
                            
 
                 GameManager.enemyRiderList.Clear();

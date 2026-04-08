@@ -8,6 +8,15 @@ using System.Threading.Tasks;
 
 namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
+
+    /// <summary>
+    /// make a map class when i rewrite this program this summer.
+    /// 
+    /// create a map list for the 4 maps  
+    /// 
+    /// treasure , captive and peon lists get called if map is not equal to map 4.
+    /// 
+    /// </summary>
     public class LoadMap
     {
 
@@ -15,6 +24,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         private string[][] _allMaps = new string[4][]; // stores maps in a string of strings so they can be inddexed to move forward and back through them
         public string[] _mapsCurrent; // initiattes ourt usage string for current to draw map from the all maps string
         public int _currentMapIndex = 0; //initiates and sets the default map to display first 
+          
+
 
         public LoadMap()
         {
