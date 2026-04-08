@@ -25,7 +25,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         {
 
 
-            if (GameManager.player._x <= _max_x || GameManager.player._y <= _max_y)
+            if (GameManager.player._x > _max_x || GameManager.player._y > _max_y)
             {
                 _isTriggered = false;
 

@@ -24,6 +24,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             {
                 if (GameManager.player._x > recTrig._max_x || GameManager.player._y > recTrig._max_y)
                 {
+                    //isTriggered = true;
                     _ambushTriggered = true;
                     AmbushTriggered();
                 }
