@@ -17,8 +17,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         //  public static char orbSymbol = '\u2699'; will not diaplay . 
         public static int powerOrb_x_pos;
         public static int powerOrb_y_pos;
-        public static (int, int) powerOrb_min_max_x = (8, 46);///
-        public static (int, int) powerOrb_min_max_y = (8, 21);///
+        public static (int, int) powerOrb_min_max_x = (8, 48);///
+        public static (int, int) powerOrb_min_max_y = (1, 19);///
         public static int peonsDestroyed;
         public static int _XP = 0;
         public static int _poCount = 1;
@@ -80,24 +80,29 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 if (GameManager.player._x == orbs[i].x && GameManager.player._y == orbs[i].y)// checks for player on the Orb
                 {
 
-                    if (GameManager.player._x == orbs[i].x && GameManager.player._y == orbs[i].y)
-                    {
-
+                   
                         if (GameManager.MapPeonRegistry.ContainsKey(currentMap))// finds the current peon locations on the map
                         {
                             var currentPeons = GameManager.MapPeonRegistry[currentMap];
 
                           
 
-                            foreach (var peonPos in currentPeons)// cascades tthrough them to clear them
+                            foreach (var peon in currentPeons)// cascades tthrough them to clear them
                             {
-                                Console.SetCursorPosition(peonPos._x_pos, peonPos._y_pos);
+
+                                Console.SetCursorPosition(peon._x_pos, peon._y_pos);
+                                //Console.SetCursorPosition(peonPos._x_pos, peonPos._y_pos);
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.Write("░");
                                 Console.Beep(800, 50);
                                 Thread.Sleep(500); //adds a dellay to make itt feel like a wave  not super fast
-                                Console.SetCursorPosition(peonPos._x_pos, peonPos._y_pos);
-                                GameManager.WriteTileWithColor(GameManager.map._mapsCurrent[peonPos._x_pos][peonPos._y_pos]);// resets the oroignal map tile
+                                                   //Console.SetCursorPosition(peonPos._x_pos, peonPos._y_pos);
+                                                   //GameManager.WriteTileWithColor(GameManager.map._mapsCurrent[peonPos._x_pos][peonPos._y_pos]);// resets the oroignal map tile
+                                Console.SetCursorPosition(peon._x_pos, peon._y_pos);
+                                char originalTile = GameManager.map._mapsCurrent[peon._y_pos][peon._x_pos];
+                                GameManager.WriteTileWithColor(originalTile);
+
+
                             }
                             int peonsDestroyed = currentPeons.Count;
                             int bonusXP = peonsDestroyed * 10;
@@ -111,7 +116,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                         orbs.RemoveAt(i);
                     }
 
-                }
+                
             }
         }
     }
