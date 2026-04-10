@@ -124,6 +124,21 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 //viewport.CheckConsoleSize();
                 //viewport.CheckConsoleSize();
 
+                if (Console.WindowWidth < 119 || Console.WindowHeight < 29)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                   // Console.SetCursorPosition(60, 12);
+                    Console.SetCursorPosition(4, 4);
+                    Console.WriteLine("WINDOW TOO SMALL! Please enlarge to continue.");
+                    while (Console.WindowWidth < 119) { /* Wait */ }
+                }
+
+
+             
+
+
                 Console.BackgroundColor = ConsoleColor.Black;
                 HUD.Instructions();
                 player._name = Name;
@@ -158,8 +173,6 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 //clears peon position
 // HUD OUTPUT  for combat damage 
 //
-
-
 
 
 
