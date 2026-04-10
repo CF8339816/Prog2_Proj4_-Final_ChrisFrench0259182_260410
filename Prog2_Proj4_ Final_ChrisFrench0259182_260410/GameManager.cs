@@ -504,8 +504,10 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             }
             if (GameManager.map._currentMapIndex == 3)
             {
-               // MyEvents.AmbushMapCheck();
-                MyEvents.AmbushTriggered();
+                // AmbushMapCheck();
+                // MyEvents.AmbushTriggered();
+                MyEvents.CheckForAmbush();
+
             }
             Console.SetCursorPosition(player._x, player._y);
             Console.ForegroundColor = player._fgColor;
