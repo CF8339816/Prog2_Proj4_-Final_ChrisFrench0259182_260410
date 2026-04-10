@@ -124,6 +124,28 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 //viewport.CheckConsoleSize();
                 //viewport.CheckConsoleSize();
 
+
+                //if (Console.WindowWidth < 119 || Console.WindowHeight < 29)
+                //{
+                //    Console.Clear();
+                //    Console.ForegroundColor = ConsoleColor.Red;
+                //    Console.BackgroundColor = ConsoleColor.Yellow;
+                //    // Console.SetCursorPosition(60, 12);
+                //    Console.SetCursorPosition(4, 4);
+                //    Console.WriteLine("WINDOW TOO SMALL! Please enlarge to continue.");
+                //    while (Console.WindowWidth < 119)
+                //    {
+                //        Thread.Sleep(100);
+                //    }
+                //    map.DrawMap();
+                //    Console.ResetColor();
+
+                //    HUD.Instructions();
+
+                //    HUD.plStats();
+                //}
+
+
                 Console.BackgroundColor = ConsoleColor.Black;
                 HUD.Instructions();
                 player._name = Name;
@@ -164,8 +186,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
 
 
-                MyEvents.UpdateRiders();
-                MyEvents.CheckForAmbush();
+                //MyEvents.UpdateRiders();
+                //MyEvents.CheckForAmbush();
                 /*>>>>>>*/
                 var newSpawn = map.MapChanger(player._x, player._y); //references the map changer function
 
@@ -238,6 +260,11 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
                 if (GameManager.map._currentMapIndex == 3)
                 {
+            //////
+                    MyEvents.UpdateRiders(); ////
+                    MyEvents.CheckForAmbush(); ////
+             //////
+
                     for (int i = enemyRiderList.Count - 1; i >= 0; i--)
                     {
                         if (enemyRiderList[i]._health <= 0)
