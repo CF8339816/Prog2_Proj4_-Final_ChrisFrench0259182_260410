@@ -132,11 +132,17 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                    // Console.SetCursorPosition(60, 12);
                     Console.SetCursorPosition(4, 4);
                     Console.WriteLine("WINDOW TOO SMALL! Please enlarge to continue.");
-                    while (Console.WindowWidth < 119) { /* Wait */ }
+                    while (Console.WindowWidth < 119) 
+                    { 
+                        Thread.Sleep(100);
+                    }
+                    map.DrawMap();
                 }
 
+                Console.ResetColor();
+                HUD.Instructions();
+                HUD.plStats();
 
-             
 
 
                 Console.BackgroundColor = ConsoleColor.Black;

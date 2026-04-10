@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO; // Required for File reading
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO; // Required for File reading
 
 
 namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
@@ -16,14 +16,14 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public int _y_pos;
 
         public static Random _prisonerSpawn = new Random();
-        public static int _prisonerCount = 8;
+        public static int _prisonerCount = 9;
         public static (int, int) _prisoner_min_max_x = (8, 46);
         public static (int, int) _prisoner_min_max_y = (8, 21);
         public static int _freed;
 
    
         public Captive(string Name, int x, int y, int count, char symbol, ConsoleColor color, (int, int) min_max_x, (int, int) min_max_y) :
-            base("Hostage", x, y, count: 8, symbol: 'S', ConsoleColor.White, (8, 46), (8, 21))
+            base("Hostage", x, y, count: 9, symbol: 'S', ConsoleColor.White, (8, 46), (8, 21))
         {
             _x_pos = x;
             _y_pos = y;
@@ -108,6 +108,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                     string Heston = slaves[i].CaptiveName;
                     _freed += 1;
                     Buffs.IncreaseXP(5);
+                    Buffs.IncreaseMaxHealth(3);
+                    Buffs.IncreaseATK(3);
                     Treasure._gold += 2;
 
                     // Pass the specific name to the HUD!
