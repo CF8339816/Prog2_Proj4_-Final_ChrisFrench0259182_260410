@@ -17,8 +17,8 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         //  public static char orbSymbol = '\u2699'; will not diaplay . 
         public static int powerOrb_x_pos;
         public static int powerOrb_y_pos;
-        public static (int, int) powerOrb_min_max_x = (1, 54);///
-        public static (int, int) powerOrb_min_max_y = (1, 23);///
+        public static (int, int) powerOrb_min_max_x = (8, 46);///
+        public static (int, int) powerOrb_min_max_y = (8, 21);///
         public static int peonsDestroyed;
         public static int _XP = 0;
         public static int _poCount = 1;
@@ -76,35 +76,41 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
             for (int i = orbs.Count - 1; i >= 0; i--)
             {
+
                 if (GameManager.player._x == orbs[i].x && GameManager.player._y == orbs[i].y)// checks for player on the Orb
                 {
-                    if (GameManager.MapPeonRegistry.ContainsKey(currentMap))// finds the current peon locations on the map
+
+                    if (GameManager.player._x == orbs[i].x && GameManager.player._y == orbs[i].y)
                     {
-                        var currentPeons = GameManager.MapPeonRegistry[currentMap];
 
-                        foreach (var peon in currentPeons)// cascades tthrough them to clear them
+                        if (GameManager.MapPeonRegistry.ContainsKey(currentMap))// finds the current peon locations on the map
                         {
-                            Console.SetCursorPosition(peon._x_pos, peon._y_pos);
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.Write("░");
-                            Console.Beep(800, 50);
-                            Thread.Sleep(500); //adds a dellay to make itt feel like a wave  not super fast
+                            var currentPeons = GameManager.MapPeonRegistry[currentMap];
 
-                            Console.SetCursorPosition(peon._x_pos, peon._y_pos);
-                            char originalTile = GameManager.map._mapsCurrent[peon._y_pos][peon._x_pos];
-                            GameManager.WriteTileWithColor(originalTile);
+                          
+
+                            foreach (var peonPos in currentPeons)// cascades tthrough them to clear them
+                            {
+                                Console.SetCursorPosition(peonPos._x_pos, peonPos._y_pos);
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.Write("░");
+                                Console.Beep(800, 50);
+                                Thread.Sleep(500); //adds a dellay to make itt feel like a wave  not super fast
+                                Console.SetCursorPosition(peonPos._x_pos, peonPos._y_pos);
+                                GameManager.WriteTileWithColor(GameManager.map._mapsCurrent[peonPos._x_pos][peonPos._y_pos]);// resets the oroignal map tile
+                            }
+                            int peonsDestroyed = currentPeons.Count;
+                            int bonusXP = peonsDestroyed * 10;
+                            _XP = bonusXP;
+                            currentPeons.Clear();// clears the peons from the map
+                            Player.plXP += bonusXP;
+                            Buffs.IncreaseXP(bonusXP);  //awards a base xp
+                            HUD.Kaboom();
                         }
 
-                        int peonsCount = currentPeons.Count;
-                        int bonusXP = peonsCount * 10;
-                        Player.plXP += bonusXP; //awards a base xp
-
-                        currentPeons.Clear();// clears the peons from the map
-
-                        HUD.Kaboom();
+                        orbs.RemoveAt(i);
                     }
 
-                    orbs.RemoveAt(i);
                 }
             }
         }

@@ -9,13 +9,14 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
 {
  public class RecTrig : rectangle
     {
-     
 
-       
+
+        public static bool IsTriggered = false;
 
         public RecTrig(string Name, int Rect_min_x, int Rect_max_x, int Rect_min_y, int Rect_max_y, bool IsTriggered) : 
-            base ("trig", 1,  13, 1, 8, false)
+            base (Name, Rect_min_x,  Rect_max_x,  Rect_min_y, Rect_max_y, IsTriggered)
         {
+            IsTriggered = false;
            
         }
 
@@ -24,14 +25,14 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         {
 
 
-            if (GameManager.player._x > _max_x || GameManager.player._y > _max_y)
+            if (GameManager.player._x <= _max_x || GameManager.player._y <= _max_y)
             {
-                _isTriggered = true;
+                _isTriggered = false;
 
             }
             else
             {
-                _isTriggered = false; 
+                _isTriggered = true; 
             }
 
         }
