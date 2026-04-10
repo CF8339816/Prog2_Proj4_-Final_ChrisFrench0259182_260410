@@ -16,7 +16,7 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
         public RecTrig(string Name, int Rect_min_x, int Rect_max_x, int Rect_min_y, int Rect_max_y, bool IsTriggered) : 
             base (Name, Rect_min_x,  Rect_max_x,  Rect_min_y, Rect_max_y, IsTriggered)
         {
-            IsTriggered = false;
+            //IsTriggered = false;
            
         }
 
@@ -24,16 +24,25 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
               public  void ActivateTrigger()
         {
 
-
-            if (GameManager.player._x <= _max_x || GameManager.player._y <= _max_y)
+            if (GameManager.player._x > _max_x || GameManager.player._y > _max_y)
             {
-                _isTriggered = false;
+                _isTriggered = true;
 
             }
             else
             {
-                _isTriggered = true; 
+                _isTriggered = false;
             }
+
+            //if (GameManager.player._x <= _max_x || GameManager.player._y <= _max_y)
+            //{
+            //    _isTriggered = false;
+
+            //}
+            //else
+            //{
+            //    _isTriggered = true; 
+            //}
 
         }
 
