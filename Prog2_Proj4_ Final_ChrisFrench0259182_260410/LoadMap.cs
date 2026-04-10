@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
+    /// <summary>
+    /// make a map class when i rewrite this program this summer.
+    /// 
+    /// create a map list for the 4 maps  
+    /// 
+    /// treasure , captive and peon lists get called if map is not equal to map 4.
+    /// 
+    /// </summary>
     public class LoadMap
     {
 
