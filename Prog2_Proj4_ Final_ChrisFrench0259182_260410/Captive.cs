@@ -3,67 +3,97 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO; // Required for File reading
+
 
 namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     public class Captive : Collectable
     {
-   
-        public static bool _newPrisoner = true;
+     
+        public string CaptiveName;
+        public int _x_pos;
+        public int _y_pos;
+
         public static Random _prisonerSpawn = new Random();
-        public static int _prisonerCount=6;
-        public static int _prisoner_x_pos;
-        public static int _prisoner_y_pos;
+        public static int _prisonerCount = 8;
         public static (int, int) _prisoner_min_max_x = (8, 46);
         public static (int, int) _prisoner_min_max_y = (8, 21);
         public static int _freed;
-       
-        //public static List<(int x, int y)> _prisonerLocations = new List<(int, int)>();
 
-        public Captive(string Name, int x, int y, int count, char symbol, ConsoleColor color, (int, int) min_max_x, (int, int) min_max_y) : base(Name, x, y, count: 8, symbol: 'S', ConsoleColor.White, min_max_x, min_max_y)
+   
+        public Captive(string Name, int x, int y, int count, char symbol, ConsoleColor color, (int, int) min_max_x, (int, int) min_max_y) :
+            base("Hostage", x, y, count: 8, symbol: 'S', ConsoleColor.White, (8, 46), (8, 21))
         {
-            Name = "hostage";
-            _prisonerCount = count;
-            _prisoner_x_pos = x;
-            _prisoner_y_pos = y;
-            _prisoner_min_max_x = min_max_x;///
-            _prisoner_min_max_y = min_max_y;///
+            _x_pos = x;
+            _y_pos = y;
+
+            
+            CaptiveName = GetRandomNameFromFile();
+            _name = CaptiveName;
+        }
+
+       
+        public static string GetRandomNameFromFile()
+        {
+            string filePath = "names.txt";
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    
+                    string content = File.ReadAllText(filePath);
+                    string[] names = content.Split(new[] { ',', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (names.Length > 0)
+                    {
+                        return names[_prisonerSpawn.Next(names.Length)].Trim();
+                    }
+                }
+            }
+            catch (Exception ex)
+            
+            {
+                Console.WriteLine($"Error loading {filePath}: {ex.Message}");
+            }
+
+            return "Unknown Prisoner"; 
         }
 
         public static void DrawPrisoner()
         {
             int currentMap = GameManager.map._currentMapIndex;
 
-            if (!GameManager.MapCaptiveRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected captives
+            if (!GameManager.MapCaptiveRegistry.ContainsKey(currentMap))
             {
-                List<(int x, int y)> captives = new List<(int x, int y)>();
+                List<Captive> captives = new List<Captive>();
                 for (int i = 0; i < _prisonerCount; i++)
                 {
-                    int capSpawnX, capSpawnY;
                     bool valid = false;
                     while (!valid)
                     {
-                        capSpawnX = _prisonerSpawn.Next(_prisoner_min_max_x.Item1, _prisoner_min_max_x.Item2 + 1);///
-                        capSpawnY = _prisonerSpawn.Next(_prisoner_min_max_y.Item1, _prisoner_min_max_y.Item2 + 1);///
+                        int _x_pos = _prisonerSpawn.Next(_prisoner_min_max_x.Item1, _prisoner_min_max_x.Item2 + 1);
+                        int _y_pos = _prisonerSpawn.Next(_prisoner_min_max_y.Item1, _prisoner_min_max_y.Item2 + 1);
 
-                        if (!GameManager.IsTileOccupied(capSpawnX, capSpawnY))
+                        if (!GameManager.IsTileOccupied(_x_pos, _y_pos))
                         {
-                            captives.Add((capSpawnX, capSpawnY));
+                            captives.Add(new Captive("Hostage", _x_pos, _y_pos, count: 8, symbol: 'S', ConsoleColor.White, (8, 46), (8, 21)));
                             valid = true;
                         }
                     }
                 }
                 GameManager.MapCaptiveRegistry[currentMap] = captives;
             }
-                        
-            foreach (var slaves in GameManager.MapCaptiveRegistry[currentMap])// checks the dictionary to draw from fro the currerent map
+
+            foreach (var cap in GameManager.MapCaptiveRegistry[currentMap])
             {
-                Console.SetCursorPosition(slaves.x, slaves.y);
+                Console.SetCursorPosition(cap._x_pos, cap._y_pos);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("S");
             }
             Console.ResetColor();
         }
+
         public static void CheckCapCollection()
         {
             int currentMap = GameManager.map._currentMapIndex;
@@ -73,16 +103,17 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
             for (int i = slaves.Count - 1; i >= 0; i--)
             {
-                if (GameManager.player._x == slaves[i].x && GameManager.player._y == slaves[i].y)
+                if (GameManager.player._x == slaves[i]._x_pos && GameManager.player._y == slaves[i]._y_pos)
                 {
-                    _freed +=1;
+                    string Heston = slaves[i].CaptiveName;
+                    _freed += 1;
                     Buffs.IncreaseXP(5);
-                    Buffs.IncreaseATK(0);
-                    Buffs.IncreaseMaxHealth(0);
                     Treasure._gold += 2;
-                    HUD.Moses();
 
-                    slaves.RemoveAt(i);// remove Captives from map list
+                    // Pass the specific name to the HUD!
+                    HUD.Moses(Heston);
+
+                    slaves.RemoveAt(i);
                 }
             }
         }

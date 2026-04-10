@@ -11,6 +11,15 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     class GameManager
 
+
+    /// <summary>
+ /// remove all statics when rewriting the code this summer. 
+ /// not enough time to get thaqt sorted currently with the other assignments due at same timeframe as this one.
+    /// </summary>
+
+
+
+
     {
         //  public static LoadMap map = new LoadMap();
         // public static bool isPlaying = true;
@@ -26,7 +35,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         public static List<EnemyRider> enemyRiderList = new List<EnemyRider>();
         public static LoadMap map = new LoadMap();
         public static Dictionary<int, List<(int x, int y)>> MapTreasureRegistry = new Dictionary<int, List<(int x, int y)>>();// dictionary set up to track treasure per map to prevent respawn when going back to map after leaving 
-        public static Dictionary<int, List<(int x, int y)>> MapCaptiveRegistry = new Dictionary<int, List<(int x, int y)>>();// dictionary set up to track Captives per map to prevent respawn when going back to map after leaving 
+        public static Dictionary<int, List<Captive>> MapCaptiveRegistry = new Dictionary<int, List<Captive>> ();// dictionary set up to track Captives per map to prevent respawn when going back to map after leaving 
         public static Dictionary<int, List<(int x, int y)>> MapOrbRegistry = new Dictionary<int, List<(int x, int y)>>();
         public static Dictionary<int, List<Peon>> MapPeonRegistry = new Dictionary<int, List<Peon>>();
         public static bool isPlaying = true;
@@ -75,7 +84,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             // Check there is already a captive there using current dictionary list for current map
             if (GameManager.MapCaptiveRegistry.ContainsKey(currentMap))
             {
-                if (GameManager.MapCaptiveRegistry[currentMap].Any(p => p.x == x && p.y == y))
+                if (GameManager.MapCaptiveRegistry[currentMap].Any(p => p._x_pos == x && p._y_pos == y))
                 { return true; }
             }
             return false;
@@ -140,6 +149,21 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 Captive.CheckCapCollection();
                 PowerOrb.CheckOrbCollection();
                 Peon.CheckPeonCollection();
+
+//loop through Peons
+// if player pos = peon pos (X AND Y)
+// THEN PLAYER TAKES DAMAGE
+//PEON TAKES DAMAGE
+//treasure awarded
+//clears peon position
+// HUD OUTPUT  for combat damage 
+//
+
+
+
+
+
+
                 MyEvents.UpdateRiders();
                 MyEvents.CheckForAmbush();
                 /*>>>>>>*/

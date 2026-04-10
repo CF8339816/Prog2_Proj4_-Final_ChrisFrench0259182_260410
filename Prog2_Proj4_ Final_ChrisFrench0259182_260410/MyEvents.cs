@@ -34,7 +34,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 
             }
 
-            AmbushTriggered();
+        AmbushTriggered();
         }
         public static void AmbushTriggered()
         {

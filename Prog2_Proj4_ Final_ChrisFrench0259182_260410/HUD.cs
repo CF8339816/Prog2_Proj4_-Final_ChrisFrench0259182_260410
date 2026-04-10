@@ -219,13 +219,15 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
         }
 
-        public static void Moses()
+        public static void Moses(string Heston)
         {
             Console.ForegroundColor = ConsoleColor.Gray;
 
             Console.SetCursorPosition(60, 4);
-            Console.WriteLine($"{GameManager.player._name} has freed a captive... Good Job! They thank");
-                Console.SetCursorPosition(60, 5);
+            Console.WriteLine($"{GameManager.player._name} has freed a captive... Good Job! ");
+            Console.SetCursorPosition(60, 5);
+            Console.WriteLine($"They tell you their name is {Heston} and they thank ");
+            Console.SetCursorPosition(60, 6);
             Console.WriteLine($"you with a small power up an a couple of gold they hid.");
 
             Console.ResetColor();
