@@ -1,4 +1,4 @@
-﻿using prog2_Proj3_beta_ChrisFrench0259182_260324;
+﻿//using prog2_Proj3_beta_ChrisFrench0259182_260324;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,7 +12,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
     public class MyEvents
     {
        //public static bool _ambushTriggered = false;
-        public static bool isTriggered = true;
+        public static bool isTriggered = false;
   
             public static RecTrig recTrig = new RecTrig("trig", 0, 13,  0, 8, false);
 

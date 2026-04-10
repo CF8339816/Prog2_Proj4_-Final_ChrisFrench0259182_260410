@@ -11,10 +11,11 @@ namespace prog2_Proj3_beta_ChrisFrench0259182_260324
     {
 
 
-        public static bool IsTriggered = false;
+       // public static bool IsTriggered = false;
 
-        public RecTrig(string Name, int Rect_min_x, int Rect_max_x, int Rect_min_y, int Rect_max_y, bool IsTriggered) : 
-            base (Name, Rect_min_x,  Rect_max_x,  Rect_min_y, Rect_max_y, IsTriggered)
+        public RecTrig(string Name, int Rect_min_x, int Rect_max_x, int Rect_min_y, int Rect_max_y, bool IsTriggered) :
+        //base (Name, Rect_min_x,  Rect_max_x,  Rect_min_y, Rect_max_y, IsTriggered)
+        base(Name, 1, 13, 1, 8, false)
         {
             //IsTriggered = false;
            
