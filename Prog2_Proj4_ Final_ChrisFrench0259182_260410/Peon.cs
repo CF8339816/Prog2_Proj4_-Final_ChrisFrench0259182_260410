@@ -2,132 +2,159 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+
 
 namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
-{
-    public class Peon : Character
     {
-
-        public static bool _newPeon = true;
-        public static Random _peonSpawn = new Random();
-        public static int _peonCount = 9;
-        public static int _peon_x_pos;
-        public static int _peon_y_pos;
-        public static (int, int) _peon_min_max_x = (1, 55);
-        public static (int, int) _peon_min_max_y = (1, 24);
-        public static int _defeated;
-       // public static Random _rando = new Random();
- 
-
-        public Peon(string Name, int x, int y, int attack, char symbol, int hp, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) _min_max_x, (int, int) _min_max_y) : 
-            base("Peon", x, y, 2, '6', 3, fgColor: ConsoleColor.Green, bgColor: ConsoleColor.Black, (1, 55), (1, 24))
+        public class Peon : Character
         {
-            Name = "Peon";
-            _peonCount = 9;
-            _peon_x_pos = x;
-            _peon_y_pos = y;
+            
+            public string PeonName;
+            public int _x_pos;
+            public int _y_pos;
+
           
+            public static Random _peonSpawn = new Random();
+            public static int _peonCount = 9;
+            public static (int, int) _peon_min_max_x = (1, 55);
+            public static (int, int) _peon_min_max_y = (1, 24);
 
-        }
-
-
-                       
-        public static void DrawPeon()
-        {
-            if (GameManager.map._currentMapIndex < 3) {
-                int currentMap = GameManager.map._currentMapIndex;
-
-                if (!GameManager.MapPeonRegistry.ContainsKey(currentMap))// onlly spawns new list if map never visited otherwise holds locations of uncolllected captives
-                {
-                    List<(int x, int y)> Peon = new List<(int x, int y)>();
-                    for (int i = 0; i < _peonCount; i++)
-                    {
-                        int peonSpawnX, peonSpawnY;
-                        bool valid = false;
-                        while (!valid)
-                        {
-                            peonSpawnX = _peonSpawn.Next(_peon_min_max_x.Item1, _peon_min_max_x.Item2 + 1);///
-                            peonSpawnY = _peonSpawn.Next(_peon_min_max_y.Item1, _peon_min_max_y.Item2 + 1);///
-
-                            if (!GameManager.IsTileOccupied(peonSpawnX, peonSpawnY))
-                            {
-                                Peon.Add((peonSpawnX, peonSpawnY));
-                                valid = true;
-                            }
-                        }
-                    }
-                    GameManager.MapPeonRegistry[currentMap] = Peon;
-                }
-
-                foreach (var peons in GameManager.MapPeonRegistry[currentMap])// checks the dictionary to draw from fro the currerent map
-                {
-                    Console.SetCursorPosition(peons.x, peons.y);
-
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write('6');
-                }
-                Console.ResetColor();
-            }
-        }
-        public static void CheckPeonCollection()
-        {
-            int currentMap = GameManager.map._currentMapIndex;
-            if (!GameManager.MapPeonRegistry.ContainsKey(currentMap)) return;
-
-            var peon = GameManager.MapPeonRegistry[currentMap];
-
-            for (int i = peon.Count - 1; i >= 0; i--)
+            public Peon(string Name, int x, int y, int attack, char symbol, int hp, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) _min_max_x, (int, int) _min_max_y) :
+                base(Name, x, y, 2, '6', 3, ConsoleColor.Green, ConsoleColor.Black, (1, 55), (1, 24))
             {
-                if (GameManager.player._x == peon[i].x && GameManager.player._y == peon[i].y)
-                {
-                    GameManager.player._health -= 2;
-                    Buffs.IncreaseXP(5);
-
-                    Treasure._gold += 1;
-                    HUD.PeonSmite();
-
-                    peon.RemoveAt(i);// remove Captives from map list
-                }
-            }
-        }
-
-        public static void MovePeonsRandomly()
-        {
-            int currentMap = GameManager.map._currentMapIndex;
-            if (!GameManager.MapPeonRegistry.ContainsKey(currentMap)) return;
-
-            var peonList = GameManager.MapPeonRegistry[currentMap];
-
-            for (int i = 0; i < peonList.Count; i++)
-            {
-                
-                int oldX = peonList[i].x;// gets current x
-                int oldY = peonList[i].y;//gets current y
+              
+                string RandName = RandoGobboNameo();
+                PeonName = "Peon " + RandName;
 
                
-                int nextX = oldX + _peonSpawn.Next(-1, 2);
-                int nextY = oldY + _peonSpawn.Next(-1, 2);
+                Name = PeonName;
 
-                
-                if ((nextX != oldX || nextY != oldY) && !GameManager.IsTileOccupied(nextX, nextY))//checks if the taget tile is free and availabl to write to
+               
+                _x_pos = x;
+                _y_pos = y;
+            }
+
+           
+            public string RandoGobboNameo()
+            {
+                string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                string lower = "abcdefghijklmnopqrstuvwxyz";
+                StringBuilder moniqur = new StringBuilder();
+
+                int length = _peonSpawn.Next(3, 8);
+                moniqur.Append(upper[_peonSpawn.Next(upper.Length)]);
+
+                for (int i = 1; i < length; i++)
                 {
-                    
-                    Console.SetCursorPosition(oldX, oldY);// clears old location
-                    GameManager.WriteTileWithColor(GameManager.map._mapsCurrent[oldY][oldX]);
+                    moniqur.Append(lower[_peonSpawn.Next(lower.Length)]);
+                }
+                return moniqur.ToString();
+            }
 
-                   
-                    peonList[i] = (nextX, nextY); // adds new location to the dictionary 
+            public static void DrawPeon()
+            {
+                if (GameManager.map._currentMapIndex < 3)
+                {
+                    int currentMap = GameManager.map._currentMapIndex;
 
-                  
-                    Console.SetCursorPosition(nextX, nextY); //0draws at new location
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.Write('6');
+            
+                    if (!GameManager.MapPeonRegistry.ContainsKey(currentMap))
+                    {
+                        List<Peon> peonList = new List<Peon>();
+                        for (int i = 0; i < _peonCount; i++)
+                        {
+                            bool valid = false;
+                            while (!valid)
+                            {
+                                int peon_x = _peonSpawn.Next(_peon_min_max_x.Item1, _peon_min_max_x.Item2 + 1);
+                                int peon_y = _peonSpawn.Next(_peon_min_max_y.Item1, _peon_min_max_y.Item2 + 1);
+
+                                if (!GameManager.IsTileOccupied(peon_x, peon_y))
+                                {
+
+                                peonList.Add(new Peon(" ", peon_x, peon_y, 2, '6', 3, ConsoleColor.Green, ConsoleColor.Black, (1, 55), (1, 24)));
+                                    valid = true;
+                                }
+                            }
+                        }
+                        GameManager.MapPeonRegistry[currentMap] = peonList;
+                    }
+
+            
+                    foreach (var p in GameManager.MapPeonRegistry[currentMap])
+                    {
+                        Console.SetCursorPosition(p._x_pos, p._y_pos);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write('6');
+                    }
                     Console.ResetColor();
                 }
             }
-        }    
+
+            public static void CheckPeonCollection()
+            {
+                int currentMap = GameManager.map._currentMapIndex;
+                if (!GameManager.MapPeonRegistry.ContainsKey(currentMap)) return;
+
+                var peonList = GameManager.MapPeonRegistry[currentMap];
+
+                for (int i = peonList.Count - 1; i >= 0; i--)
+                {
+                    
+                    if (GameManager.player._x == peonList[i]._x_pos && GameManager.player._y == peonList[i]._y_pos)
+                    {
+                    string namewa = peonList[i].PeonName;
+
+                        GameManager.player._health -= 2;
+                        Buffs.IncreaseXP(5);
+                        Treasure._gold += 1;
+                        HUD.PeonSmite(namewa);
+
+                        peonList.RemoveAt(i);
+                    }
+                }
+            }
+
+            public static void MovePeonsRandomly()
+            {
+                int currentMap = GameManager.map._currentMapIndex;
+                if (!GameManager.MapPeonRegistry.ContainsKey(currentMap)) return;
+
+                var peonList = GameManager.MapPeonRegistry[currentMap];
+
+                foreach (var p in peonList)
+                {
+                    int oldX = p._x_pos;
+                    int oldY = p._y_pos;
+
+                    int nextX = oldX + _peonSpawn.Next(-1, 2);
+                    int nextY = oldY + _peonSpawn.Next(-1, 2);
+
+                    if ((nextX != oldX || nextY != oldY) && !GameManager.IsTileOccupied(nextX, nextY))
+                    {
+                       
+                        Console.SetCursorPosition(oldX, oldY);
+                        GameManager.WriteTileWithColor(GameManager.map._mapsCurrent[oldY][oldX]);
+
+                       
+                        p._x_pos = nextX;
+                        p._y_pos = nextY;
+
+                   
+                        Console.SetCursorPosition(p._x_pos, p._y_pos);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write('6');
+                        Console.ResetColor();
+                    }
+                }
+            }
+        }
     }
-}
+  

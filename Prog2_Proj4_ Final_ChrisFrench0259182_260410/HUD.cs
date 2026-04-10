@@ -102,13 +102,13 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
         //}
         /// </summary>
         #endregion 
-        public static void PeonSmite()
+        public static void PeonSmite(string namewa)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(60, 12);
-            Console.WriteLine($" the clueless peon looks up at you and takes {GameManager.player._attack} points");
+            Console.WriteLine($" {namewa} the clueless peon looks up at you and ");
             Console.SetCursorPosition(60, 13);
-            Console.WriteLine($" of combat damage");
+            Console.WriteLine($"takes {GameManager.player._attack} points of combat damage");
             Console.SetCursorPosition(60, 14);
             Console.WriteLine($" you have turned this poor peon into gooo how much health ");
             Console.SetCursorPosition(60, 15);

@@ -9,7 +9,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 {
     internal class EnemyRider : Character
     {
-        public EnemyRider(string Name, int x, int y, int attack, char symbol, int hp, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) _min_max_x, (int, int) _min_max_y) 
+        public EnemyRider(string Name, int x, int y, int attack, char symbol, int hp, ConsoleColor fgColor, ConsoleColor bgColor, (int, int) _min_max_x, (int, int) _min_max_y)
             : base(Name, x, y, attack, symbol, hp, fgColor, bgColor, (1, 55), (1, 24))
         {
         }

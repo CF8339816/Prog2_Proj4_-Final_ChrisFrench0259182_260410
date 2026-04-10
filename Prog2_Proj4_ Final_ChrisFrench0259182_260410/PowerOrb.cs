@@ -91,13 +91,13 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
                             foreach (var peonPos in currentPeons)// cascades tthrough them to clear them
                             {
-                                Console.SetCursorPosition(peonPos.x, peonPos.y);
+                                Console.SetCursorPosition(peonPos._x_pos, peonPos._y_pos);
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.Write("░");
                                 Console.Beep(800, 50);
                                 Thread.Sleep(500); //adds a dellay to make itt feel like a wave  not super fast
-                                Console.SetCursorPosition(peonPos.x, peonPos.y);
-                                GameManager.WriteTileWithColor(GameManager.map._mapsCurrent[peonPos.y][peonPos.x]);// resets the oroignal map tile
+                                Console.SetCursorPosition(peonPos._x_pos, peonPos._y_pos);
+                                GameManager.WriteTileWithColor(GameManager.map._mapsCurrent[peonPos._x_pos][peonPos._y_pos]);// resets the oroignal map tile
                             }
                             int peonsDestroyed = currentPeons.Count;
                             int bonusXP = peonsDestroyed * 10;
