@@ -123,28 +123,32 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
             {
                 //viewport.CheckConsoleSize();
                 //viewport.CheckConsoleSize();
+                /////////////////////////////
 
+                if (Console.WindowWidth < 119 || Console.WindowHeight < 29)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    
+                    // Console.SetCursorPosition(60, 12);
+                    Console.SetCursorPosition(4, 4);
+                    Console.WriteLine("WINDOW TOO SMALL! Please enlarge to continue.");
+                    Console.WriteLine("CRITICAL ERROR: Console window was too small!");
+                    Console.WriteLine("Please maximize your window and press 'R' to restart.");
+                    Console.ResetColor();
+                    while (Console.WindowWidth < 119)
+                    {
+                        Thread.Sleep(100);
+                    }
+                    map.DrawMap();
+                    Console.ResetColor();
 
-                //if (Console.WindowWidth < 119 || Console.WindowHeight < 29)
-                //{
-                //    Console.Clear();
-                //    Console.ForegroundColor = ConsoleColor.Red;
-                //    Console.BackgroundColor = ConsoleColor.Yellow;
-                //    // Console.SetCursorPosition(60, 12);
-                //    Console.SetCursorPosition(4, 4);
-                //    Console.WriteLine("WINDOW TOO SMALL! Please enlarge to continue.");
-                //    while (Console.WindowWidth < 119)
-                //    {
-                //        Thread.Sleep(100);
-                //    }
-                //    map.DrawMap();
-                //    Console.ResetColor();
+                    HUD.Instructions();
 
-                //    HUD.Instructions();
-
-                //    HUD.plStats();
-                //}
-
+                    HUD.plStats();
+                }
+                /////////////////
 
                 Console.BackgroundColor = ConsoleColor.Black;
                 HUD.Instructions();

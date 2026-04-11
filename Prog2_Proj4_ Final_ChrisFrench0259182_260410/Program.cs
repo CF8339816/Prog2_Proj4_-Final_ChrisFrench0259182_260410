@@ -17,10 +17,39 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
     {
         public static void Main(string[] args)
         {
-            bool replay = true;
+
+            bool replay = false;
+            try
+            {
+                GameManager.StartGame();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.Clear();
+
+                Console.WriteLine("CRITICAL ERROR: Console window was too small!");
+                Console.WriteLine("Please maximize your window and press 'R' to restart."); //pause and waitts for player resize and press r
+
+            }
+
+            GameManager.StartGame();
+
+            replay = true;
 
             while (replay)
             {
+                //try
+                //{
+                //    GameManager.StartGame();
+                //}
+                //catch (ArgumentOutOfRangeException)
+                //{
+                //    Console.Clear();
+                //    Console.WriteLine("CRITICAL ERROR: Console window was too small!");
+                //    Console.WriteLine("Please maximize your window and press 'R' to restart.");  // same but in replay
+
+                //}
+                Console.Clear();
                 GameManager.StartGame();
 
                 ConsoleKey input = Console.ReadKey(true).Key;
@@ -33,7 +62,7 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
                 }
                 if (input != ConsoleKey.R)
                 {
-                    replay = false; 
+                    replay = false;
                 }
                 Console.Clear();
 
@@ -47,8 +76,40 @@ namespace Prog2_Proj4_Final_ChrisFrench0259182_260410
 
 
 
-       
+
+        /////////////////////////   
+        //bool replay = true;
+
+        //while (replay)
+        //{
+        //    GameManager.StartGame();
+
+        //    ConsoleKey input = Console.ReadKey(true).Key;
+        //    if (input == ConsoleKey.R)
+        //    {
+        //        GameManager.isPlaying = true;
+        //        replay = true;
+        //        GameManager.Restart();
+        //        return;
+        //    }
+        //    if (input != ConsoleKey.R)
+        //    {
+        //        replay = false; 
+        //    }
+        //    Console.Clear();
+
+        //}
+
+        //GameManager.StartGame();
+
+
     }
+
+
+
+
+
 }
+
 
 
